@@ -18,14 +18,19 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.opponents.count;
+    return self.opponents.count + 1;
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return self.name;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"OpponentCell"];
 
-    GXPlayer* opponent = self.opponents[indexPath.row];
+    GXPlayer* opponent = indexPath.row == 0 ? self.myself : self.opponents[indexPath.row - 1];
     cell.textLabel.text = opponent.name;
 
     return cell;

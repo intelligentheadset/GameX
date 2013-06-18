@@ -12,15 +12,20 @@
 #import "NSString+IHSDeviceConnectionState.h"
 #import "GNAudio3DSound.h"
 
+#import "Constants.h"
+
 #import "RecorderView.h"
+#import "ArangoAPIClient.h"
 
 #import "GXGame.h"
 #import "GXGame+UITableViewDataSource.h"
 
 #import <AVFoundation/AVFoundation.h>
 
-@interface GNMainViewController () <UITableViewDelegate, IHSDeviceDelegate, IHSSensorsDelegate, IHSButtonDelegate, IHS3DAudioDelegate, RecorderViewDelegate> {
+@interface GNMainViewController () <UITextFieldDelegate, UITableViewDelegate, IHSDeviceDelegate, IHSSensorsDelegate, IHSButtonDelegate, IHS3DAudioDelegate, RecorderViewDelegate> {
     GXGame*                         _game;
+    NSURL*                          _urlUserVoice;
+
     __weak IBOutlet UILabel*        statusLabel;
 
     __weak IBOutlet UIButton *_recordButton;
@@ -51,11 +56,15 @@
 {
     [super viewDidLoad];
 
-    _game = [[GXGame alloc] initWithGameId:@"1"];
-
     _joinButton.enabled = NO;
+    _playerNameTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:kStandardUserDefaultsPlayerName];
+
     _opponentsTableView.dataSource = _game;
-    
+
+    NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    _urlUserVoice = [NSURL fileURLWithPathComponents:@[documentsPath, @"uservoice.wav"]];
+
+
     // Register to get notified via 'appDidBecomeActive' when the app becomes active
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
@@ -167,6 +176,20 @@
 }
 
 
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:kStandardUserDefaultsPlayerName];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [self joinAction:_joinButton];
+    return YES;
+}
+
+
 #pragma mark - IHSDeviceDelegate implementation
 
 - (void)ihsDevice:(IHSDevice*)ihsDevice connectedStateChanged:(IHSDeviceConnectionState)connectionState
@@ -188,7 +211,7 @@
             // Play a sound through the standard player to indicate that the IHS is connected
             [self playSystemSoundWithName:@"TestConnectSound"];
 
-            _joinButton.enabled = _game != nil;
+            _joinButton.enabled = YES;
         }
 
         case IHSDeviceConnectionStateDisconnected: {
@@ -370,21 +393,68 @@
 }
 
 - (IBAction)joinAction:(id)sender {
+    if (_playerNameTextField.text.length == 0) {
+        UIAlertView* av = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Warning", @"Title for generic warning")
+                                                     message:NSLocalizedString(@"Please fill in your player name", @"Tell the user to fill in player name")
+                                                    delegate:nil
+                                           cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Generic dismiss title")
+                                           otherButtonTitles:nil];
+        [av show];
+    }
+    else if (![_urlUserVoice checkResourceIsReachableAndReturnError:nil]) {
+        UIAlertView* av = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Warning", @"Title for generic warning")
+                                                     message:NSLocalizedString(@"Please record your player name", @"Tell the user to record player name")
+                                                    delegate:nil
+                                           cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Generic dismiss title")
+                                           otherButtonTitles:nil];
+        [av show];
+    }
+    else {
+        // First fetch game (one hardcoded game)
+        [[ArangoAPIClient sharedClient] postPath:@"_api/cursor" parameters:@{@"query": @"for game in Games return game"} success:^(AFHTTPRequestOperation *operation, id JSON) {
+            NSLog(@"Games Result: %@", JSON);
+            NSArray* games = JSON[@"result"];
+            NSDictionary* currentGame = [games lastObject];
+            _game = [[GXGame alloc] initWithGameId:currentGame[@"_key"]];
+            _game.name = currentGame[@"name"];
+
+            if (_game != nil) {
+                _joinButton.enabled = NO;
+                GXPlayer* player = [[GXPlayer alloc] initWithPlayerId:APP_DELEGATE.ihsDevice.preferredDevice];
+                player.name = @"Martin";
+                [_game joinGameAsPlayer:player];
+                [_opponentsTableView reloadData];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@", error);
+        }];
+
+    }
+    /*
+    [[ArangoAPIClient sharedClient] postPath:@"_api/cursor" parameters:@{@"query": @"for player in GamePlayers filter player.game==\"1\" return player"} success:^(AFHTTPRequestOperation *operation, id JSON) {
+        NSLog(@"App.net Global Stream: %@", JSON);
+        NSDictionary* players = JSON[@"result"];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+*/
+
+
+/*
     GXPlayer* player = [[GXPlayer alloc] initWithPlayerId:APP_DELEGATE.ihsDevice.preferredDevice];
     player.name = @"Martin";
     [_game joinGameAsPlayer:player];
+*/
 }
 
 
 #pragma mark - RecorderViewDelegate
 
 - (void)recorderView:(RecorderView*)recorderView didStopRecordingToURL:(NSURL*)url {
-    NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSURL* urlTarget = [NSURL fileURLWithPathComponents:@[documentsPath, @"uservoice.wav"]];
 
     // Remove any existing recording, and move the new one into place
-    [[NSFileManager defaultManager] removeItemAtURL:urlTarget error:nil];
-    [[NSFileManager defaultManager] moveItemAtURL:url toURL:urlTarget error:nil];
+    [[NSFileManager defaultManager] removeItemAtURL:_urlUserVoice error:nil];
+    [[NSFileManager defaultManager] moveItemAtURL:url toURL:_urlUserVoice error:nil];
 
     // Remove the recorder view
     [UIView animateWithDuration:0.33 animations:^{
