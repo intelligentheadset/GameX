@@ -16,6 +16,9 @@
 @property (nonatomic, readonly) GXPlayer* myself;
 @property (nonatomic, readonly) NSArray* opponents;
 
+@property (nonatomic, strong) NSString* name;
+
+
 - (id)initWithGameId:(NSString*)gid;
 
 - (void)joinGameAsPlayer:(GXPlayer*)player;
