@@ -1,0 +1,541 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5B3578DC1770703300A00526 /* GXGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3578DB1770703300A00526 /* GXGame.m */; };
+		5B3578DF1770708C00A00526 /* GXPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3578DE1770708C00A00526 /* GXPlayer.m */; };
+		5B3578E21770795A00A00526 /* GXGame+UITableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3578E11770795A00A00526 /* GXGame+UITableViewDataSource.m */; };
+		5BE3CF4C1770499600EB542A /* IHS.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF461770499600EB542A /* IHS.xcconfig */; };
+		5BE3CF4D1770499600EB542A /* libIHS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BE3CF4B1770499600EB542A /* libIHS.a */; };
+		5BE3CF60177049C400EB542A /* TestConnectSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF4F177049C400EB542A /* TestConnectSound.wav */; };
+		5BE3CF61177049C400EB542A /* ThisIsNorth.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF50177049C400EB542A /* ThisIsNorth.wav */; };
+		5BE3CF62177049C500EB542A /* ThisIsSouth.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF51177049C400EB542A /* ThisIsSouth.wav */; };
+		5BE3CF63177049C500EB542A /* icon_144_144.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF54177049C400EB542A /* icon_144_144.png */; };
+		5BE3CF64177049C500EB542A /* icon_72_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF55177049C400EB542A /* icon_72_72.png */; };
+		5BE3CF65177049C500EB542A /* icon_api_circle_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF56177049C400EB542A /* icon_api_circle_114.png */; };
+		5BE3CF66177049C500EB542A /* icon_api_circle_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF57177049C400EB542A /* icon_api_circle_57.png */; };
+		5BE3CF67177049C500EB542A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF59177049C400EB542A /* Default-568h@2x.png */; };
+		5BE3CF68177049C500EB542A /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF5A177049C400EB542A /* Default-Landscape@2x~ipad.png */; };
+		5BE3CF69177049C500EB542A /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF5B177049C400EB542A /* Default-Landscape~ipad.png */; };
+		5BE3CF6A177049C500EB542A /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF5C177049C400EB542A /* Default-Portrait@2x~ipad.png */; };
+		5BE3CF6B177049C500EB542A /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF5D177049C400EB542A /* Default-Portrait~ipad.png */; };
+		5BE3CF6C177049C500EB542A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF5E177049C400EB542A /* Default.png */; };
+		5BE3CF6D177049C500EB542A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF5F177049C400EB542A /* Default@2x.png */; };
+		AD40EB13176882B9001AE48A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD40EB12176882B9001AE48A /* AVFoundation.framework */; };
+		AD9E8D951765B5F6005167EC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD9E8D941765B5F6005167EC /* MapKit.framework */; };
+		AD9E8DA11765CD22005167EC /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9E8DA01765CD22005167EC /* Constants.m */; };
+		ADE5264F176709D50029FAA9 /* NSString+IHSDeviceConnectionState.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE5264E176709D50029FAA9 /* NSString+IHSDeviceConnectionState.m */; };
+		D24EC62E175CB0F100EF888C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24EC62D175CB0F100EF888C /* UIKit.framework */; };
+		D24EC630175CB0F100EF888C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24EC62F175CB0F100EF888C /* Foundation.framework */; };
+		D24EC632175CB0F100EF888C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24EC631175CB0F100EF888C /* CoreGraphics.framework */; };
+		D24EC638175CB0F100EF888C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D24EC636175CB0F100EF888C /* InfoPlist.strings */; };
+		D24EC63A175CB0F100EF888C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EC639175CB0F100EF888C /* main.m */; };
+		D24EC63E175CB0F100EF888C /* GNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EC63D175CB0F100EF888C /* GNAppDelegate.m */; };
+		D24EC647175CB0F100EF888C /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24EC645175CB0F100EF888C /* MainStoryboard_iPhone.storyboard */; };
+		D24EC64A175CB0F100EF888C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24EC648175CB0F100EF888C /* MainStoryboard_iPad.storyboard */; };
+		D24EC64D175CB0F100EF888C /* GNMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EC64C175CB0F100EF888C /* GNMainViewController.m */; };
+		D24EC650175CB0F100EF888C /* GNFlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24EC64F175CB0F100EF888C /* GNFlipsideViewController.m */; };
+		D24EC684175CB50800EF888C /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24EC683175CB50800EF888C /* CoreBluetooth.framework */; };
+		D24EC686175CB50E00EF888C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24EC685175CB50E00EF888C /* CoreLocation.framework */; };
+		D24EC69D175CB8F500EF888C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24EC69C175CB8F500EF888C /* AudioToolbox.framework */; };
+		D24EC6A1175CB96300EF888C /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D24EC6A0175CB96300EF888C /* libc++.dylib */; };
+		D2527546175E124F00F4931F /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2527545175E124F00F4931F /* ExternalAccessory.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5B3578DA1770703300A00526 /* GXGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GXGame.h; sourceTree = "<group>"; };
+		5B3578DB1770703300A00526 /* GXGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GXGame.m; sourceTree = "<group>"; };
+		5B3578DD1770708C00A00526 /* GXPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GXPlayer.h; sourceTree = "<group>"; };
+		5B3578DE1770708C00A00526 /* GXPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GXPlayer.m; sourceTree = "<group>"; };
+		5B3578E01770795A00A00526 /* GXGame+UITableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GXGame+UITableViewDataSource.h"; sourceTree = "<group>"; };
+		5B3578E11770795A00A00526 /* GXGame+UITableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GXGame+UITableViewDataSource.m"; sourceTree = "<group>"; };
+		5BE3CF461770499600EB542A /* IHS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = IHS.xcconfig; sourceTree = "<group>"; };
+		5BE3CF481770499600EB542A /* GNAudio3DSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAudio3DSound.h; sourceTree = "<group>"; };
+		5BE3CF491770499600EB542A /* IHSDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IHSDevice.h; sourceTree = "<group>"; };
+		5BE3CF4B1770499600EB542A /* libIHS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIHS.a; sourceTree = "<group>"; };
+		5BE3CF4F177049C400EB542A /* TestConnectSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = TestConnectSound.wav; sourceTree = "<group>"; };
+		5BE3CF50177049C400EB542A /* ThisIsNorth.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ThisIsNorth.wav; sourceTree = "<group>"; };
+		5BE3CF51177049C400EB542A /* ThisIsSouth.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ThisIsSouth.wav; sourceTree = "<group>"; };
+		5BE3CF54177049C400EB542A /* icon_144_144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_144_144.png; sourceTree = "<group>"; };
+		5BE3CF55177049C400EB542A /* icon_72_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_72_72.png; sourceTree = "<group>"; };
+		5BE3CF56177049C400EB542A /* icon_api_circle_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_api_circle_114.png; sourceTree = "<group>"; };
+		5BE3CF57177049C400EB542A /* icon_api_circle_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_api_circle_57.png; sourceTree = "<group>"; };
+		5BE3CF59177049C400EB542A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		5BE3CF5A177049C400EB542A /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		5BE3CF5B177049C400EB542A /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		5BE3CF5C177049C400EB542A /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		5BE3CF5D177049C400EB542A /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		5BE3CF5E177049C400EB542A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		5BE3CF5F177049C400EB542A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		AD40EB12176882B9001AE48A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		AD9E8D941765B5F6005167EC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		AD9E8D9F1765CD22005167EC /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = GameExplorer/Constants.h; sourceTree = SOURCE_ROOT; };
+		AD9E8DA01765CD22005167EC /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = GameExplorer/Constants.m; sourceTree = SOURCE_ROOT; };
+		ADE5264D176709D50029FAA9 /* NSString+IHSDeviceConnectionState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+IHSDeviceConnectionState.h"; path = "GameExplorer/NSString+IHSDeviceConnectionState.h"; sourceTree = SOURCE_ROOT; };
+		ADE5264E176709D50029FAA9 /* NSString+IHSDeviceConnectionState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+IHSDeviceConnectionState.m"; path = "GameExplorer/NSString+IHSDeviceConnectionState.m"; sourceTree = SOURCE_ROOT; };
+		D24EC62A175CB0F100EF888C /* Game X.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game X.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D24EC62D175CB0F100EF888C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D24EC62F175CB0F100EF888C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D24EC631175CB0F100EF888C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D24EC635175CB0F100EF888C /* GameExplorer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GameExplorer-Info.plist"; sourceTree = "<group>"; };
+		D24EC637175CB0F100EF888C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D24EC639175CB0F100EF888C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D24EC63B175CB0F100EF888C /* GameExplorer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GameExplorer-Prefix.pch"; sourceTree = "<group>"; };
+		D24EC63C175CB0F100EF888C /* GNAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNAppDelegate.h; sourceTree = "<group>"; };
+		D24EC63D175CB0F100EF888C /* GNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GNAppDelegate.m; sourceTree = "<group>"; };
+		D24EC646175CB0F100EF888C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		D24EC649175CB0F100EF888C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		D24EC64B175CB0F100EF888C /* GNMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNMainViewController.h; sourceTree = "<group>"; };
+		D24EC64C175CB0F100EF888C /* GNMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GNMainViewController.m; sourceTree = "<group>"; };
+		D24EC64E175CB0F100EF888C /* GNFlipsideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNFlipsideViewController.h; sourceTree = "<group>"; };
+		D24EC64F175CB0F100EF888C /* GNFlipsideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GNFlipsideViewController.m; sourceTree = "<group>"; };
+		D24EC683175CB50800EF888C /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		D24EC685175CB50E00EF888C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D24EC69C175CB8F500EF888C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D24EC6A0175CB96300EF888C /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		D2527545175E124F00F4931F /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D24EC627175CB0F100EF888C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BE3CF4D1770499600EB542A /* libIHS.a in Frameworks */,
+				AD40EB13176882B9001AE48A /* AVFoundation.framework in Frameworks */,
+				D2527546175E124F00F4931F /* ExternalAccessory.framework in Frameworks */,
+				AD9E8D951765B5F6005167EC /* MapKit.framework in Frameworks */,
+				D24EC6A1175CB96300EF888C /* libc++.dylib in Frameworks */,
+				D24EC69D175CB8F500EF888C /* AudioToolbox.framework in Frameworks */,
+				D24EC686175CB50E00EF888C /* CoreLocation.framework in Frameworks */,
+				D24EC684175CB50800EF888C /* CoreBluetooth.framework in Frameworks */,
+				D24EC62E175CB0F100EF888C /* UIKit.framework in Frameworks */,
+				D24EC630175CB0F100EF888C /* Foundation.framework in Frameworks */,
+				D24EC632175CB0F100EF888C /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5B3578D917706F9F00A00526 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B3578DA1770703300A00526 /* GXGame.h */,
+				5B3578DB1770703300A00526 /* GXGame.m */,
+				5B3578DD1770708C00A00526 /* GXPlayer.h */,
+				5B3578DE1770708C00A00526 /* GXPlayer.m */,
+				5B3578E01770795A00A00526 /* GXGame+UITableViewDataSource.h */,
+				5B3578E11770795A00A00526 /* GXGame+UITableViewDataSource.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5BE3CF441770499600EB542A /* IHS */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3CF451770499600EB542A /* config */,
+				5BE3CF471770499600EB542A /* include */,
+				5BE3CF4A1770499600EB542A /* lib */,
+			);
+			path = IHS;
+			sourceTree = SOURCE_ROOT;
+		};
+		5BE3CF451770499600EB542A /* config */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3CF461770499600EB542A /* IHS.xcconfig */,
+			);
+			path = config;
+			sourceTree = "<group>";
+		};
+		5BE3CF471770499600EB542A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3CF481770499600EB542A /* GNAudio3DSound.h */,
+				5BE3CF491770499600EB542A /* IHSDevice.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		5BE3CF4A1770499600EB542A /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3CF4B1770499600EB542A /* libIHS.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		5BE3CF4E177049C400EB542A /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3CF4F177049C400EB542A /* TestConnectSound.wav */,
+				5BE3CF50177049C400EB542A /* ThisIsNorth.wav */,
+				5BE3CF51177049C400EB542A /* ThisIsSouth.wav */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		5BE3CF52177049C400EB542A /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3CF53177049C400EB542A /* Icon */,
+				5BE3CF58177049C400EB542A /* Splash */,
+			);
+			path = Graphics;
+			sourceTree = "<group>";
+		};
+		5BE3CF53177049C400EB542A /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3CF54177049C400EB542A /* icon_144_144.png */,
+				5BE3CF55177049C400EB542A /* icon_72_72.png */,
+				5BE3CF56177049C400EB542A /* icon_api_circle_114.png */,
+				5BE3CF57177049C400EB542A /* icon_api_circle_57.png */,
+			);
+			path = Icon;
+			sourceTree = "<group>";
+		};
+		5BE3CF58177049C400EB542A /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3CF59177049C400EB542A /* Default-568h@2x.png */,
+				5BE3CF5A177049C400EB542A /* Default-Landscape@2x~ipad.png */,
+				5BE3CF5B177049C400EB542A /* Default-Landscape~ipad.png */,
+				5BE3CF5C177049C400EB542A /* Default-Portrait@2x~ipad.png */,
+				5BE3CF5D177049C400EB542A /* Default-Portrait~ipad.png */,
+				5BE3CF5E177049C400EB542A /* Default.png */,
+				5BE3CF5F177049C400EB542A /* Default@2x.png */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		AD40EB1517688C19001AE48A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D24EC645175CB0F100EF888C /* MainStoryboard_iPhone.storyboard */,
+				D24EC648175CB0F100EF888C /* MainStoryboard_iPad.storyboard */,
+				5BE3CF4E177049C400EB542A /* Audio */,
+				5BE3CF52177049C400EB542A /* Graphics */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D24EC621175CB0F100EF888C = {
+			isa = PBXGroup;
+			children = (
+				D24EC633175CB0F100EF888C /* GameExplorer */,
+				D24EC62C175CB0F100EF888C /* Frameworks */,
+				D24EC62B175CB0F100EF888C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D24EC62B175CB0F100EF888C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D24EC62A175CB0F100EF888C /* Game X.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D24EC62C175CB0F100EF888C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AD40EB12176882B9001AE48A /* AVFoundation.framework */,
+				AD9E8D941765B5F6005167EC /* MapKit.framework */,
+				D24EC6A0175CB96300EF888C /* libc++.dylib */,
+				D2527545175E124F00F4931F /* ExternalAccessory.framework */,
+				D24EC69C175CB8F500EF888C /* AudioToolbox.framework */,
+				D24EC685175CB50E00EF888C /* CoreLocation.framework */,
+				D24EC683175CB50800EF888C /* CoreBluetooth.framework */,
+				D24EC62D175CB0F100EF888C /* UIKit.framework */,
+				D24EC62F175CB0F100EF888C /* Foundation.framework */,
+				D24EC631175CB0F100EF888C /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D24EC633175CB0F100EF888C /* GameExplorer */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3CF441770499600EB542A /* IHS */,
+				5B3578D917706F9F00A00526 /* Model */,
+				D24EC63C175CB0F100EF888C /* GNAppDelegate.h */,
+				D24EC63D175CB0F100EF888C /* GNAppDelegate.m */,
+				D24EC64B175CB0F100EF888C /* GNMainViewController.h */,
+				D24EC64C175CB0F100EF888C /* GNMainViewController.m */,
+				D24EC64E175CB0F100EF888C /* GNFlipsideViewController.h */,
+				D24EC64F175CB0F100EF888C /* GNFlipsideViewController.m */,
+				AD9E8D9F1765CD22005167EC /* Constants.h */,
+				AD9E8DA01765CD22005167EC /* Constants.m */,
+				ADE5264D176709D50029FAA9 /* NSString+IHSDeviceConnectionState.h */,
+				ADE5264E176709D50029FAA9 /* NSString+IHSDeviceConnectionState.m */,
+				AD40EB1517688C19001AE48A /* Resources */,
+				D24EC634175CB0F100EF888C /* Supporting Files */,
+			);
+			path = GameExplorer;
+			sourceTree = "<group>";
+		};
+		D24EC634175CB0F100EF888C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D24EC635175CB0F100EF888C /* GameExplorer-Info.plist */,
+				D24EC636175CB0F100EF888C /* InfoPlist.strings */,
+				D24EC639175CB0F100EF888C /* main.m */,
+				D24EC63B175CB0F100EF888C /* GameExplorer-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D24EC629175CB0F100EF888C /* GameExplorer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D24EC653175CB0F100EF888C /* Build configuration list for PBXNativeTarget "GameExplorer" */;
+			buildPhases = (
+				D24EC626175CB0F100EF888C /* Sources */,
+				D24EC627175CB0F100EF888C /* Frameworks */,
+				D24EC628175CB0F100EF888C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GameExplorer;
+			productName = HeadsetExplorer;
+			productReference = D24EC62A175CB0F100EF888C /* Game X.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D24EC622175CB0F100EF888C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = GN;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "GN Store Nord A/S";
+			};
+			buildConfigurationList = D24EC625175CB0F100EF888C /* Build configuration list for PBXProject "GameExplorer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D24EC621175CB0F100EF888C;
+			productRefGroup = D24EC62B175CB0F100EF888C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D24EC629175CB0F100EF888C /* GameExplorer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D24EC628175CB0F100EF888C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D24EC638175CB0F100EF888C /* InfoPlist.strings in Resources */,
+				D24EC647175CB0F100EF888C /* MainStoryboard_iPhone.storyboard in Resources */,
+				D24EC64A175CB0F100EF888C /* MainStoryboard_iPad.storyboard in Resources */,
+				5BE3CF4C1770499600EB542A /* IHS.xcconfig in Resources */,
+				5BE3CF60177049C400EB542A /* TestConnectSound.wav in Resources */,
+				5BE3CF61177049C400EB542A /* ThisIsNorth.wav in Resources */,
+				5BE3CF62177049C500EB542A /* ThisIsSouth.wav in Resources */,
+				5BE3CF63177049C500EB542A /* icon_144_144.png in Resources */,
+				5BE3CF64177049C500EB542A /* icon_72_72.png in Resources */,
+				5BE3CF65177049C500EB542A /* icon_api_circle_114.png in Resources */,
+				5BE3CF66177049C500EB542A /* icon_api_circle_57.png in Resources */,
+				5BE3CF67177049C500EB542A /* Default-568h@2x.png in Resources */,
+				5BE3CF68177049C500EB542A /* Default-Landscape@2x~ipad.png in Resources */,
+				5BE3CF69177049C500EB542A /* Default-Landscape~ipad.png in Resources */,
+				5BE3CF6A177049C500EB542A /* Default-Portrait@2x~ipad.png in Resources */,
+				5BE3CF6B177049C500EB542A /* Default-Portrait~ipad.png in Resources */,
+				5BE3CF6C177049C500EB542A /* Default.png in Resources */,
+				5BE3CF6D177049C500EB542A /* Default@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D24EC626175CB0F100EF888C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D24EC63A175CB0F100EF888C /* main.m in Sources */,
+				D24EC63E175CB0F100EF888C /* GNAppDelegate.m in Sources */,
+				D24EC64D175CB0F100EF888C /* GNMainViewController.m in Sources */,
+				D24EC650175CB0F100EF888C /* GNFlipsideViewController.m in Sources */,
+				AD9E8DA11765CD22005167EC /* Constants.m in Sources */,
+				ADE5264F176709D50029FAA9 /* NSString+IHSDeviceConnectionState.m in Sources */,
+				5B3578DC1770703300A00526 /* GXGame.m in Sources */,
+				5B3578DF1770708C00A00526 /* GXPlayer.m in Sources */,
+				5B3578E21770795A00A00526 /* GXGame+UITableViewDataSource.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D24EC636175CB0F100EF888C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D24EC637175CB0F100EF888C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D24EC645175CB0F100EF888C /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D24EC646175CB0F100EF888C /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		D24EC648175CB0F100EF888C /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D24EC649175CB0F100EF888C /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D24EC651175CB0F100EF888C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/IHS/lib\"";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = armv7;
+			};
+			name = Debug;
+		};
+		D24EC652175CB0F100EF888C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/IHS/lib\"";
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv7;
+			};
+			name = Release;
+		};
+		D24EC654175CB0F100EF888C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GameExplorer/GameExplorer-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/GameExplorer/GameExplorer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/IHS/lib\"",
+				);
+				PRODUCT_NAME = "Game X";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D24EC655175CB0F100EF888C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GameExplorer/GameExplorer-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/GameExplorer/GameExplorer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/IHS/lib\"",
+				);
+				PRODUCT_NAME = "Game X";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D24EC625175CB0F100EF888C /* Build configuration list for PBXProject "GameExplorer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D24EC651175CB0F100EF888C /* Debug */,
+				D24EC652175CB0F100EF888C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D24EC653175CB0F100EF888C /* Build configuration list for PBXNativeTarget "GameExplorer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D24EC654175CB0F100EF888C /* Debug */,
+				D24EC655175CB0F100EF888C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D24EC622175CB0F100EF888C /* Project object */;
+}
