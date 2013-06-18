@@ -10,6 +10,16 @@
 		5B3578DC1770703300A00526 /* GXGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3578DB1770703300A00526 /* GXGame.m */; };
 		5B3578DF1770708C00A00526 /* GXPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3578DE1770708C00A00526 /* GXPlayer.m */; };
 		5B3578E21770795A00A00526 /* GXGame+UITableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3578E11770795A00A00526 /* GXGame+UITableViewDataSource.m */; };
+		5B3578F61770A0D000A00526 /* RecorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3578EB1770A0D000A00526 /* RecorderView.m */; };
+		5B3578F71770A0D000A00526 /* RecorderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B3578EC1770A0D000A00526 /* RecorderView.xib */; };
+		5B3578F81770A0D000A00526 /* PeakMeter.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3578EE1770A0D000A00526 /* PeakMeter.png */; };
+		5B3578F91770A0D000A00526 /* PeakMeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3578EF1770A0D000A00526 /* PeakMeter@2x.png */; };
+		5B3578FA1770A0D000A00526 /* RecordIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3578F01770A0D000A00526 /* RecordIcon.png */; };
+		5B3578FB1770A0D000A00526 /* RecordIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3578F11770A0D000A00526 /* RecordIcon@2x.png */; };
+		5B3578FC1770A0D000A00526 /* RecordingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3578F21770A0D000A00526 /* RecordingIcon.png */; };
+		5B3578FD1770A0D000A00526 /* RecordingIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3578F31770A0D000A00526 /* RecordingIcon@2x.png */; };
+		5B3578FE1770A0D000A00526 /* StopButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3578F41770A0D000A00526 /* StopButton.png */; };
+		5B3578FF1770A0D000A00526 /* StopButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3578F51770A0D000A00526 /* StopButton@2x.png */; };
 		5BE3CF4C1770499600EB542A /* IHS.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF461770499600EB542A /* IHS.xcconfig */; };
 		5BE3CF4D1770499600EB542A /* libIHS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BE3CF4B1770499600EB542A /* libIHS.a */; };
 		5BE3CF60177049C400EB542A /* TestConnectSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF4F177049C400EB542A /* TestConnectSound.wav */; };
@@ -54,6 +64,17 @@
 		5B3578DE1770708C00A00526 /* GXPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GXPlayer.m; sourceTree = "<group>"; };
 		5B3578E01770795A00A00526 /* GXGame+UITableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GXGame+UITableViewDataSource.h"; sourceTree = "<group>"; };
 		5B3578E11770795A00A00526 /* GXGame+UITableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GXGame+UITableViewDataSource.m"; sourceTree = "<group>"; };
+		5B3578EA1770A0D000A00526 /* RecorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecorderView.h; sourceTree = "<group>"; };
+		5B3578EB1770A0D000A00526 /* RecorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecorderView.m; sourceTree = "<group>"; };
+		5B3578EC1770A0D000A00526 /* RecorderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecorderView.xib; sourceTree = "<group>"; };
+		5B3578EE1770A0D000A00526 /* PeakMeter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PeakMeter.png; sourceTree = "<group>"; };
+		5B3578EF1770A0D000A00526 /* PeakMeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PeakMeter@2x.png"; sourceTree = "<group>"; };
+		5B3578F01770A0D000A00526 /* RecordIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordIcon.png; sourceTree = "<group>"; };
+		5B3578F11770A0D000A00526 /* RecordIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordIcon@2x.png"; sourceTree = "<group>"; };
+		5B3578F21770A0D000A00526 /* RecordingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordingIcon.png; sourceTree = "<group>"; };
+		5B3578F31770A0D000A00526 /* RecordingIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordingIcon@2x.png"; sourceTree = "<group>"; };
+		5B3578F41770A0D000A00526 /* StopButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StopButton.png; sourceTree = "<group>"; };
+		5B3578F51770A0D000A00526 /* StopButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StopButton@2x.png"; sourceTree = "<group>"; };
 		5BE3CF461770499600EB542A /* IHS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = IHS.xcconfig; sourceTree = "<group>"; };
 		5BE3CF481770499600EB542A /* GNAudio3DSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAudio3DSound.h; sourceTree = "<group>"; };
 		5BE3CF491770499600EB542A /* IHSDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IHSDevice.h; sourceTree = "<group>"; };
@@ -134,6 +155,32 @@
 				5B3578E11770795A00A00526 /* GXGame+UITableViewDataSource.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		5B3578E91770A0D000A00526 /* Recorder */ = {
+			isa = PBXGroup;
+			children = (
+				5B3578EA1770A0D000A00526 /* RecorderView.h */,
+				5B3578EB1770A0D000A00526 /* RecorderView.m */,
+				5B3578EC1770A0D000A00526 /* RecorderView.xib */,
+				5B3578ED1770A0D000A00526 /* Resources */,
+			);
+			path = Recorder;
+			sourceTree = "<group>";
+		};
+		5B3578ED1770A0D000A00526 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5B3578EE1770A0D000A00526 /* PeakMeter.png */,
+				5B3578EF1770A0D000A00526 /* PeakMeter@2x.png */,
+				5B3578F01770A0D000A00526 /* RecordIcon.png */,
+				5B3578F11770A0D000A00526 /* RecordIcon@2x.png */,
+				5B3578F21770A0D000A00526 /* RecordingIcon.png */,
+				5B3578F31770A0D000A00526 /* RecordingIcon@2x.png */,
+				5B3578F41770A0D000A00526 /* StopButton.png */,
+				5B3578F51770A0D000A00526 /* StopButton@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		5BE3CF441770499600EB542A /* IHS */ = {
@@ -265,6 +312,7 @@
 			children = (
 				5BE3CF441770499600EB542A /* IHS */,
 				5B3578D917706F9F00A00526 /* Model */,
+				5B3578E91770A0D000A00526 /* Recorder */,
 				D24EC63C175CB0F100EF888C /* GNAppDelegate.h */,
 				D24EC63D175CB0F100EF888C /* GNAppDelegate.m */,
 				D24EC64B175CB0F100EF888C /* GNMainViewController.h */,
@@ -362,6 +410,15 @@
 				5BE3CF6B177049C500EB542A /* Default-Portrait~ipad.png in Resources */,
 				5BE3CF6C177049C500EB542A /* Default.png in Resources */,
 				5BE3CF6D177049C500EB542A /* Default@2x.png in Resources */,
+				5B3578F71770A0D000A00526 /* RecorderView.xib in Resources */,
+				5B3578F81770A0D000A00526 /* PeakMeter.png in Resources */,
+				5B3578F91770A0D000A00526 /* PeakMeter@2x.png in Resources */,
+				5B3578FA1770A0D000A00526 /* RecordIcon.png in Resources */,
+				5B3578FB1770A0D000A00526 /* RecordIcon@2x.png in Resources */,
+				5B3578FC1770A0D000A00526 /* RecordingIcon.png in Resources */,
+				5B3578FD1770A0D000A00526 /* RecordingIcon@2x.png in Resources */,
+				5B3578FE1770A0D000A00526 /* StopButton.png in Resources */,
+				5B3578FF1770A0D000A00526 /* StopButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +438,7 @@
 				5B3578DC1770703300A00526 /* GXGame.m in Sources */,
 				5B3578DF1770708C00A00526 /* GXPlayer.m in Sources */,
 				5B3578E21770795A00A00526 /* GXGame+UITableViewDataSource.m in Sources */,
+				5B3578F61770A0D000A00526 /* RecorderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
