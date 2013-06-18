@@ -14,8 +14,21 @@
 
 @property (nonatomic, copy) NSString* name;
 
-@property (nonatomic, assign) double latitude;
-@property (nonatomic, assign) double longitude;
+@property (nonatomic, readonly) double latitude;
+@property (nonatomic, readonly) double longitude;
+
+@property (nonatomic, readonly) double distance;
+@property (nonatomic, readonly) double direction;
+
+@property (nonatomic, readonly) BOOL needsUpdate;
+
+@property (nonatomic, assign) NSInteger fragCount;
+
+- (void)setLatitude:(double)latitude andLongitude:(double)longitude;
+- (void)setDistance:(double)distance andDirection:(double)direction;
+
+
+
 
 - (id)initWithPlayerId:(NSString*)pid;
 

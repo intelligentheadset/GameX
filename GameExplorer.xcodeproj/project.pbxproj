@@ -20,6 +20,8 @@
 		5B3578FD1770A0D000A00526 /* RecordingIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3578F31770A0D000A00526 /* RecordingIcon@2x.png */; };
 		5B3578FE1770A0D000A00526 /* StopButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3578F41770A0D000A00526 /* StopButton.png */; };
 		5B3578FF1770A0D000A00526 /* StopButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3578F51770A0D000A00526 /* StopButton@2x.png */; };
+		5B3579041770B87400A00526 /* CLLocation+GNDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3579031770B87400A00526 /* CLLocation+GNDistance.m */; };
+		5B3579071770B8C000A00526 /* GNMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3579061770B8C000A00526 /* GNMath.m */; };
 		5BE3CF4C1770499600EB542A /* IHS.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF461770499600EB542A /* IHS.xcconfig */; };
 		5BE3CF4D1770499600EB542A /* libIHS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BE3CF4B1770499600EB542A /* libIHS.a */; };
 		5BE3CF60177049C400EB542A /* TestConnectSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF4F177049C400EB542A /* TestConnectSound.wav */; };
@@ -75,6 +77,10 @@
 		5B3578F31770A0D000A00526 /* RecordingIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordingIcon@2x.png"; sourceTree = "<group>"; };
 		5B3578F41770A0D000A00526 /* StopButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StopButton.png; sourceTree = "<group>"; };
 		5B3578F51770A0D000A00526 /* StopButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StopButton@2x.png"; sourceTree = "<group>"; };
+		5B3579021770B87400A00526 /* CLLocation+GNDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+GNDistance.h"; sourceTree = "<group>"; };
+		5B3579031770B87400A00526 /* CLLocation+GNDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+GNDistance.m"; sourceTree = "<group>"; };
+		5B3579051770B8C000A00526 /* GNMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNMath.h; sourceTree = "<group>"; };
+		5B3579061770B8C000A00526 /* GNMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNMath.m; sourceTree = "<group>"; };
 		5BE3CF461770499600EB542A /* IHS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = IHS.xcconfig; sourceTree = "<group>"; };
 		5BE3CF481770499600EB542A /* GNAudio3DSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAudio3DSound.h; sourceTree = "<group>"; };
 		5BE3CF491770499600EB542A /* IHSDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IHSDevice.h; sourceTree = "<group>"; };
@@ -181,6 +187,25 @@
 				5B3578F51770A0D000A00526 /* StopButton@2x.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		5B3579001770B87400A00526 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5B3579011770B87400A00526 /* CoreLocation */,
+				5B3579051770B8C000A00526 /* GNMath.h */,
+				5B3579061770B8C000A00526 /* GNMath.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		5B3579011770B87400A00526 /* CoreLocation */ = {
+			isa = PBXGroup;
+			children = (
+				5B3579021770B87400A00526 /* CLLocation+GNDistance.h */,
+				5B3579031770B87400A00526 /* CLLocation+GNDistance.m */,
+			);
+			path = CoreLocation;
 			sourceTree = "<group>";
 		};
 		5BE3CF441770499600EB542A /* IHS */ = {
@@ -310,6 +335,7 @@
 		D24EC633175CB0F100EF888C /* GameExplorer */ = {
 			isa = PBXGroup;
 			children = (
+				5B3579001770B87400A00526 /* Common */,
 				5BE3CF441770499600EB542A /* IHS */,
 				5B3578D917706F9F00A00526 /* Model */,
 				5B3578E91770A0D000A00526 /* Recorder */,
@@ -439,6 +465,8 @@
 				5B3578DF1770708C00A00526 /* GXPlayer.m in Sources */,
 				5B3578E21770795A00A00526 /* GXGame+UITableViewDataSource.m in Sources */,
 				5B3578F61770A0D000A00526 /* RecorderView.m in Sources */,
+				5B3579041770B87400A00526 /* CLLocation+GNDistance.m in Sources */,
+				5B3579071770B8C000A00526 /* GNMath.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

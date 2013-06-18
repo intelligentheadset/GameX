@@ -12,22 +12,26 @@
 #import "NSString+IHSDeviceConnectionState.h"
 #import "GNAudio3DSound.h"
 
+#import "RecorderView.h"
+
 #import "GXGame.h"
 #import "GXGame+UITableViewDataSource.h"
 
 #import <AVFoundation/AVFoundation.h>
 
-@interface GNMainViewController () <UITableViewDataSource, UITableViewDelegate, IHSDeviceDelegate, IHSSensorsDelegate, IHSButtonDelegate, IHS3DAudioDelegate> {
+@interface GNMainViewController () <UITableViewDelegate, IHSDeviceDelegate, IHSSensorsDelegate, IHSButtonDelegate, IHS3DAudioDelegate, RecorderViewDelegate> {
     GXGame*                         _game;
     __weak IBOutlet UILabel*        statusLabel;
+
+    __weak IBOutlet UIButton *_recordButton;
     __weak IBOutlet UITextField *_playerNameTextField;
-    
     __weak IBOutlet UIButton *_joinButton;
     __weak IBOutlet UITableView*    _opponentsTableView;
 }
 
 @property (strong, nonatomic) AVAudioPlayer*        audioPlayer;
 
+- (IBAction)recordAction:(id)sender;
 - (IBAction)joinAction:(id)sender;
 
 @end
@@ -47,6 +51,8 @@
 {
     [super viewDidLoad];
 
+    _game = [[GXGame alloc] initWithGameId:@"1"];
+
     _joinButton.enabled = NO;
     _opponentsTableView.dataSource = _game;
     
@@ -59,6 +65,7 @@
     _opponentsTableView = nil;
     _playerNameTextField = nil;
     _joinButton = nil;
+    _recordButton = nil;
     [super viewDidUnload];
 }
 
@@ -119,6 +126,43 @@
         self.flipsidePopoverController = nil;
     } else {
         [self performSegueWithIdentifier:@"showAlternate" sender:sender];
+    }
+}
+
+
+#pragma mark - Notification Handler Methods
+
+- (void)appDidBecomeActive:(NSNotification *)notification
+{
+    // Setup delegates to receive various kinds of information from the IHS:
+    APP_DELEGATE.ihsDevice.deviceDelegate = self;   // ... connection information
+    APP_DELEGATE.ihsDevice.sensorsDelegate = self;  // ... receive data from the IHS sensors
+    APP_DELEGATE.ihsDevice.buttonDelegate = self;   // ... receive button presses
+    APP_DELEGATE.ihsDevice.audioDelegate = self;    // ... receive 3daudio notifications.
+
+    // Establish connection to the physical IHS
+    [APP_DELEGATE.ihsDevice connect];
+}
+
+
+#pragma mark - Sound handling
+
+- (void)playSystemSoundWithName:(NSString*)name {
+    NSError *error;
+    NSURL *url = [[NSBundle mainBundle] URLForResource:name withExtension:@"wav"];
+
+    [self.audioPlayer stop];
+
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    if (error) {
+        NSLog(@"Error playing sound '%@': %@", name, error);
+        self.audioPlayer = nil;
+    }
+    else {
+        self.audioPlayer.volume = 1.0;
+
+        [self.audioPlayer prepareToPlay];
+        [self.audioPlayer play];
     }
 }
 
@@ -214,6 +258,8 @@
 {
     DEBUGLog(@"8: Position: (%.4g, %.4g)", latitude, longitude);
     DEBUGLog(@"   %@", APP_DELEGATE.ihsDevice.location );
+
+    [_game.myself setLatitude:latitude andLongitude:longitude];
 }
 
 
@@ -255,52 +301,22 @@
         }
             
         case IHSButtonRight: {
+            /*
             // Stop the playback
             [ihsDevice stop];
             // Clear the list of sounds
             [ihsDevice clearSounds];
+             */
+            GXPlayer* opponent = [_game shoot:APP_DELEGATE.ihsDevice.fusedHeading];
+            if (opponent != nil) {
+                _game.myself.fragCount++;
+            }
+            
             break;
         }
             
         default:
             break;
-    }
-}
-
-
-#pragma mark - Notification Handler Methods
-
-- (void)appDidBecomeActive:(NSNotification *)notification
-{
-    // Setup delegates to receive various kinds of information from the IHS:
-    APP_DELEGATE.ihsDevice.deviceDelegate = self;   // ... connection information
-    APP_DELEGATE.ihsDevice.sensorsDelegate = self;  // ... receive data from the IHS sensors
-    APP_DELEGATE.ihsDevice.buttonDelegate = self;   // ... receive button presses
-    APP_DELEGATE.ihsDevice.audioDelegate = self;    // ... receive 3daudio notifications.
-    
-    // Establish connection to the physical IHS
-    [APP_DELEGATE.ihsDevice connect];
-}
-
-
-#pragma mark - Sound handling
-
-- (void)playSystemSoundWithName:(NSString*)name {
-    NSError *error;
-    NSURL *url = [[NSBundle mainBundle] URLForResource:name withExtension:@"wav"];
-    
-    [self.audioPlayer stop];
-    
-    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-    if (error) {
-        NSLog(@"Error playing sound '%@': %@", name, error);
-        self.audioPlayer = nil;
-    }
-    else {
-        self.audioPlayer.volume = 1.0;
-        
-        [self.audioPlayer prepareToPlay];
-        [self.audioPlayer play];
     }
 }
 
@@ -337,10 +353,57 @@
 }
 
 
+- (IBAction)recordAction:(id)sender {
+    if (!_recordButton.selected) {
+        _recordButton.selected = YES;
+        RecorderView* rv = [[RecorderView alloc] init];
+        rv.delegate = self;
+        rv.alpha = 0.0;
+        rv.frame = CGRectOffset(rv.frame, 0, 44);
+        [self.view addSubview:rv];
+        [UIView animateWithDuration:0.33 animations:^{
+            rv.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            [rv startRecording];
+        }];
+    }
+}
+
 - (IBAction)joinAction:(id)sender {
     GXPlayer* player = [[GXPlayer alloc] initWithPlayerId:APP_DELEGATE.ihsDevice.preferredDevice];
     player.name = @"Martin";
     [_game joinGameAsPlayer:player];
 }
+
+
+#pragma mark - RecorderViewDelegate
+
+- (void)recorderView:(RecorderView*)recorderView didStopRecordingToURL:(NSURL*)url {
+    NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSURL* urlTarget = [NSURL fileURLWithPathComponents:@[documentsPath, @"uservoice.wav"]];
+
+    // Remove any existing recording, and move the new one into place
+    [[NSFileManager defaultManager] removeItemAtURL:urlTarget error:nil];
+    [[NSFileManager defaultManager] moveItemAtURL:url toURL:urlTarget error:nil];
+
+    // Remove the recorder view
+    [UIView animateWithDuration:0.33 animations:^{
+        recorderView.alpha = 0.0;
+        _recordButton.selected = NO;
+    } completion:^(BOOL finished) {
+        [recorderView removeFromSuperview];
+    }];
+}
+
+
+- (void)recorderView:(RecorderView*)recorderView errorDidOccur:(NSError*)error {
+    UIAlertView* av = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Recording Error", @"Title for recording error")
+                                                 message:error.localizedDescription
+                                                delegate:nil
+                                       cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Generic dismiss title")
+                                       otherButtonTitles:nil];
+    [av show];
+}
+
 
 @end

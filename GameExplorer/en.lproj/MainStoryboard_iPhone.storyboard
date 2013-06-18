@@ -43,19 +43,19 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="8jI-Sf-omY">
-                                <rect key="frame" x="10" y="90" width="300" height="271"/>
+                                <rect key="frame" x="0.0" y="90" width="320" height="271"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OpponentCell" textLabel="DRc-pG-bpo" style="IBUITableViewCellStyleDefault" id="ShK-M2-r76">
-                                        <rect key="frame" x="0.0" y="46" width="300" height="46"/>
+                                        <rect key="frame" x="0.0" y="46" width="320" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DRc-pG-bpo">
-                                                    <rect key="frame" x="10" y="0.0" width="260" height="43"/>
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -66,9 +66,6 @@
                                         </view>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="2" id="2OP-aM-eJl"/>
-                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dw1-7Q-cTb">
                                 <rect key="frame" x="20" y="407" width="73" height="44"/>
@@ -121,6 +118,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="recordAction:" destination="2" eventType="touchUpInside" id="nei-7A-FHg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -130,6 +130,7 @@
                         <outlet property="_joinButton" destination="NCd-h6-SSk" id="51T-uT-VnD"/>
                         <outlet property="_opponentsTableView" destination="8jI-Sf-omY" id="up0-iW-dkO"/>
                         <outlet property="_playerNameTextField" destination="VUg-FG-DF4" id="Si6-R8-OZW"/>
+                        <outlet property="_recordButton" destination="Rwy-V7-NxI" id="wNB-qm-Wfb"/>
                         <outlet property="statusLabel" destination="hAZ-Dp-tKT" id="ynd-uC-ecc"/>
                     </connections>
                 </viewController>
@@ -217,10 +218,12 @@
             <relationships>
                 <relationship kind="action" name="addPlayerAction:"/>
                 <relationship kind="action" name="joinAction:"/>
+                <relationship kind="action" name="recordAction:"/>
                 <relationship kind="action" name="togglePopover:"/>
                 <relationship kind="outlet" name="_joinButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="_opponentsTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="_playerNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="_recordButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="statusLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
