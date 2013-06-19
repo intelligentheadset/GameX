@@ -132,12 +132,17 @@
                                     <action selector="recordAction:" destination="2" eventType="touchUpInside" id="nei-7A-FHg"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" id="76w-eE-JUn">
+                                <rect key="frame" x="255" y="48" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="yQX-PE-J2P"/>
                     <connections>
                         <outlet property="_joinButton" destination="NCd-h6-SSk" id="51T-uT-VnD"/>
+                        <outlet property="_networkActivityIndicator" destination="76w-eE-JUn" id="4iY-Gd-ekc"/>
                         <outlet property="_playerNameTextField" destination="VUg-FG-DF4" id="Si6-R8-OZW"/>
                         <outlet property="_playersTableView" destination="8jI-Sf-omY" id="JMI-JL-Jkm"/>
                         <outlet property="_recordButton" destination="Rwy-V7-NxI" id="wNB-qm-Wfb"/>

@@ -32,6 +32,8 @@
     __weak IBOutlet UITextField *_playerNameTextField;
     __weak IBOutlet UIButton *_joinButton;
     __weak IBOutlet UITableView*    _playersTableView;
+    
+    __weak IBOutlet UIActivityIndicatorView *_networkActivityIndicator;
 }
 
 @property (strong, nonatomic) AVAudioPlayer*        audioPlayer;
@@ -79,6 +81,7 @@
     _playerNameTextField = nil;
     _joinButton = nil;
     _recordButton = nil;
+    _networkActivityIndicator = nil;
     [super viewDidUnload];
 }
 
@@ -432,20 +435,27 @@
     }
     else {
         // First fetch game (one hardcoded game)
+        _joinButton.hidden = YES;
+        [_networkActivityIndicator startAnimating];
         [GXGame getGame:^(GXGame *game) {
             _game = game;
             if (_game != nil) {
-                _joinButton.enabled = NO;
                 GXPlayer* player = [[GXPlayer alloc] initWithPlayerId:[self uniqueDeviceName]];
                 player.name = _playerNameTextField.text;
-                [player joinGame:_game success:^(GXGame *game) {
+                [player joinGame:_game success:^() {
                     [_game joinGameAsPlayer:player];
+                    _joinButton.hidden = NO;
+                    [_networkActivityIndicator stopAnimating];
                 } failure:^(NSError *error) {
                     NSLog(@"%@", error);
+                    _joinButton.hidden = NO;
+                    [_networkActivityIndicator stopAnimating];
                 }];
             }
         } failure:^(NSError *error) {
             NSLog(@"%@", error);
+            _joinButton.hidden = NO;
+            [_networkActivityIndicator stopAnimating];
         }];
     }
     /*

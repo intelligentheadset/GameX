@@ -122,9 +122,11 @@ static NSString * const kAFAppDotNetAPIBaseURLString = @"http://81.169.185.26:90
                 if (![self.myself.pid isEqualToString:opponent[@"pid"]]) {
                     GXPlayer* updatedOpponent = [[GXPlayer alloc] initWithPlayerId:opponent[@"pid"]];
                     updatedOpponent.name = opponent[@"name"];
-                    double latitude = [opponent[@"latitude"] doubleValue];
-                    double longitude = [opponent[@"longitude"] doubleValue];
-                    [updatedOpponent setLatitude:latitude andLongitude:longitude];
+                    NSNumber* latitude = opponent[@"latitude"];     // can actually be NSNull
+                    NSNumber* longitude = opponent[@"longitude"];   // can actually be NSNull
+                    if (([latitude isKindOfClass:[NSNumber class]]) && ([latitude isKindOfClass:[NSNumber class]])) {
+                        [updatedOpponent setLatitude:latitude.doubleValue andLongitude:longitude.doubleValue];
+                    }
                     [updatedOpponents addObject:updatedOpponent];
                 }
             }
@@ -144,7 +146,7 @@ static NSString * const kAFAppDotNetAPIBaseURLString = @"http://81.169.185.26:90
 
 @implementation GXPlayer (ArangoDB)
 
-- (void)joinGame:(GXGame*)game success:(void (^)(GXGame* game))success failure:(void (^)(NSError* error))failure {
+- (void)joinGame:(GXGame*)game success:(void (^)())success failure:(void (^)(NSError* error))failure {
     [[ArangoAPIClient sharedClient] postPath:@"_api/document?collection=GamePlayers" parameters:@{@"game": game.gid, @"_key": self.pid, @"name": self.name} success:^(AFHTTPRequestOperation *operation, id JSON) {
         NSLog(@"Join Game Result: %@", JSON);
         if (success != nil) {
@@ -168,7 +170,7 @@ static NSString * const kAFAppDotNetAPIBaseURLString = @"http://81.169.185.26:90
 - (void)updateNameAndVoice:(void (^)())success failure:(void (^)(NSError* error))failure {
     //[[ArangoAPIClient sharedClient] patchPath:[self arangodbPath] parameters:@{@"name": self.name, @"uservoice": [NSData dataWithContentsOfURL:self.userVoice]} success:^(AFHTTPRequestOperation *operation, id JSON) {
     [[ArangoAPIClient sharedClient] patchPath:[self arangodbPath] parameters:@{@"name": self.name} success:^(AFHTTPRequestOperation *operation, id JSON) {
-        NSLog(@"Update Position Result: %@", JSON);
+        NSLog(@"Update Name And Voice Result: %@", JSON);
         if (success != nil) {
             success();
         }
@@ -181,7 +183,7 @@ static NSString * const kAFAppDotNetAPIBaseURLString = @"http://81.169.185.26:90
 
 
 - (void)updatePosition:(void (^)())success failure:(void (^)(NSError* error))failure {
-    [[ArangoAPIClient sharedClient] putPath:[self arangodbPath] parameters:@{@"latitude": @(self.latitude), @"longitude": @(self.longitude)} success:^(AFHTTPRequestOperation *operation, id JSON) {
+    [[ArangoAPIClient sharedClient] patchPath:[self arangodbPath] parameters:@{@"latitude": @(self.latitude), @"longitude": @(self.longitude)} success:^(AFHTTPRequestOperation *operation, id JSON) {
         NSLog(@"Update Position Result: %@", JSON);
         if (success != nil) {
             success();

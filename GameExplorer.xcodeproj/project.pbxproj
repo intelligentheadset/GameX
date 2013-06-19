@@ -32,8 +32,8 @@
 		5B3579C21770C2FA00A00526 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3579B81770C2FA00A00526 /* AFXMLRequestOperation.m */; };
 		5B3579C31770C2FA00A00526 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3579BA1770C2FA00A00526 /* UIImageView+AFNetworking.m */; };
 		5B3579C71770C37F00A00526 /* ArangoAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3579C61770C37F00A00526 /* ArangoAPIClient.m */; };
+		5BACD15F1771C7270047E71D /* libIHS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BE3CF4B1770499600EB542A /* libIHS.a */; };
 		5BE3CF4C1770499600EB542A /* IHS.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF461770499600EB542A /* IHS.xcconfig */; };
-		5BE3CF4D1770499600EB542A /* libIHS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BE3CF4B1770499600EB542A /* libIHS.a */; };
 		5BE3CF60177049C400EB542A /* TestConnectSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF4F177049C400EB542A /* TestConnectSound.wav */; };
 		5BE3CF61177049C400EB542A /* ThisIsNorth.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF50177049C400EB542A /* ThisIsNorth.wav */; };
 		5BE3CF62177049C500EB542A /* ThisIsSouth.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF51177049C400EB542A /* ThisIsSouth.wav */; };
@@ -164,7 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BE3CF4D1770499600EB542A /* libIHS.a in Frameworks */,
+				5BACD15F1771C7270047E71D /* libIHS.a in Frameworks */,
 				AD40EB13176882B9001AE48A /* AVFoundation.framework in Frameworks */,
 				D2527546175E124F00F4931F /* ExternalAccessory.framework in Frameworks */,
 				AD9E8D951765B5F6005167EC /* MapKit.framework in Frameworks */,
@@ -647,6 +647,7 @@
 		};
 		D24EC654175CB0F100EF888C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BE3CF461770499600EB542A /* IHS.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GameExplorer/GameExplorer-Prefix.pch";
@@ -664,6 +665,7 @@
 		};
 		D24EC655175CB0F100EF888C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BE3CF461770499600EB542A /* IHS.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GameExplorer/GameExplorer-Prefix.pch";
