@@ -9,7 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "GXPlayer.h"
 
+@protocol GXGameDelegate;
+
 @interface GXGame : NSObject
+
+@property (nonatomic, weak) id<GXGameDelegate> delegate;
 
 @property (nonatomic, readonly) NSString* gid;
 
@@ -18,6 +22,8 @@
 
 @property (nonatomic, strong) NSString* name;
 
+@property (nonatomic, readonly) GXPlayer* lastShot;
+
 
 - (id)initWithGameId:(NSString*)gid;
 
@@ -25,5 +31,13 @@
 - (void)leave;
 
 - (GXPlayer*)shoot:(double)direction;
+
+@end
+
+
+@protocol GXGameDelegate <NSObject>
+
+- (void)game:(GXGame*)game playerInRange:(GXPlayer*)player;
+- (void)game:(GXGame*)game playerOutOfRange:(GXPlayer*)player;
 
 @end
