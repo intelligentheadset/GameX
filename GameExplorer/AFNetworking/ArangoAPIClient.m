@@ -26,6 +26,9 @@
 
 static NSString * const kAFAppDotNetAPIBaseURLString = @"http://localhost:8529/";
 
+
+#pragma mark - ArangoAPIClient
+
 @implementation ArangoAPIClient
 
 + (ArangoAPIClient *)sharedClient {
@@ -37,6 +40,7 @@ static NSString * const kAFAppDotNetAPIBaseURLString = @"http://localhost:8529/"
     
     return _sharedClient;
 }
+
 
 - (id)initWithBaseURL:(NSURL *)url {
     self = [super initWithBaseURL:url];
@@ -54,4 +58,53 @@ static NSString * const kAFAppDotNetAPIBaseURLString = @"http://localhost:8529/"
     return self;
 }
 
+
 @end
+
+
+#pragma mark - GXGame (ArangoDB)
+
+@implementation GXGame (ArangoDB)
+
++ (void)getGame:(void (^)(GXGame* game))success failure:(void (^)(NSError* error))failure {
+    [[ArangoAPIClient sharedClient] postPath:@"_api/cursor" parameters:@{@"query": @"for game in Games return game"} success:^(AFHTTPRequestOperation *operation, id JSON) {
+        NSLog(@"Games Result: %@", JSON);
+        NSArray* games = JSON[@"result"];
+        NSDictionary* currentGame = [games lastObject];
+        GXGame* game = [[GXGame alloc] initWithGameId:currentGame[@"_key"]];
+        game.name = currentGame[@"name"];
+        success(game);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error);
+    }];
+}
+
+@end
+
+
+#pragma mark - GXPlayer (ArangoDB)
+
+@implementation GXPlayer (ArangoDB)
+
+- (void)joinGame:(GXGame*)game success:(void (^)(GXGame* game))success failure:(void (^)(NSError* error))failure {
+    [[ArangoAPIClient sharedClient] postPath:@"_api/document?collection=GamePlayers" parameters:@{@"game": game.gid, @"_key": self.pid, @"name": self.name} success:^(AFHTTPRequestOperation *operation, id JSON) {
+        NSLog(@"Join Game Result: %@", JSON);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSString* arangoError = error.userInfo[NSLocalizedRecoverySuggestionErrorKey];
+        if ([arangoError rangeOfString:@"\"code\":409"].location != NSNotFound) {
+            // The user already exists, update instead
+            [self updateNameAndVoice:success failure:failure];
+        }
+        else {
+            failure(error);
+        }
+    }];
+}
+
+
+- (void)updateNameAndVoice:(void (^)(GXGame* game))success failure:(void (^)(NSError* error))failure {
+}
+
+@end
+
+
