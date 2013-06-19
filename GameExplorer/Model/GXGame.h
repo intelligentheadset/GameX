@@ -14,7 +14,7 @@
 @property (nonatomic, readonly) NSString* gid;
 
 @property (nonatomic, readonly) GXPlayer* myself;
-@property (nonatomic, readonly) NSArray* opponents;
+@property (nonatomic, copy) NSArray* opponents;
 
 @property (nonatomic, strong) NSString* name;
 

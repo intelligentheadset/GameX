@@ -11,13 +11,13 @@
 
 @implementation GXGame {
     NSTimer*                _iterateTimer;
-    NSMutableDictionary*    _opponents;
+    NSMutableDictionary*    _players;
 }
 
 - (id)init {
     if (self = [super init]) {
         _iterateTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(iterateTimerUpdate:) userInfo:nil repeats:YES];
-        _opponents = [[NSMutableDictionary alloc] init];
+        _players = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -48,18 +48,18 @@
 
 
 - (void)addOpponent:(GXPlayer*)opponent {
-    _opponents[opponent.pid] = opponent;
+    _players[opponent.pid] = opponent;
 }
 
 
 - (void)removeOpponent:(GXPlayer*)opponent {
-    [_opponents removeObjectForKey:opponent.pid];
+    [_players removeObjectForKey:opponent.pid];
 }
 
 
 - (GXPlayer*)shoot:(double)direction {
     GXPlayer* result = nil;
-    for (GXPlayer* opponent in _opponents) {
+    for (GXPlayer* opponent in _players) {
         GNDistanceAndDirection* dad = GreatCircleDist(_myself.latitude, _myself.longitude, opponent.latitude, opponent.longitude);
         if (dad.distance < 20.0) {
             if (fabs(direction - dad.direction) < 2.0) {
@@ -74,16 +74,33 @@
 
 #pragma mark - Property Access Methods
 
-- (NSArray*)opponents {
-    return [[_opponents allValues] copy];
+- (NSArray*)players {
+    return [[_players allValues] copy];
+}
+
+
+- (void)setPlayers:(NSArray *)opponents {
+    // Manual copy over, so we can check for correct object types on the fly
+    [_players removeAllObjects];
+    if (opponents != nil) {
+        for (GXPlayer* opponent in opponents) {
+            if ([opponent isKindOfClass:[GXPlayer class]]) {
+                [self addOpponent:opponent];
+            }
+        }
+    }
 }
 
 #pragma mark - Private Methods
 
 - (void)iterateTimerUpdate:(NSTimer*)timer {
-    for (GXPlayer* opponent in _opponents) {
-        GNDistanceAndDirection* dad = GreatCircleDist(_myself.latitude, _myself.longitude, opponent.latitude, opponent.longitude);
-        [opponent setDistance:dad.distance andDirection:dad.direction];
+    if ((_myself.latitude != 0) && (_myself.longitude != 0)) {
+        for (GXPlayer* opponent in _players) {
+            if ((opponent.latitude != 0) && (opponent.longitude != 0)) {
+                GNDistanceAndDirection* dad = GreatCircleDist(_myself.latitude, _myself.longitude, opponent.latitude, opponent.longitude);
+                [opponent setDistance:dad.distance andDirection:dad.direction];
+            }
+        }
     }
 }
 

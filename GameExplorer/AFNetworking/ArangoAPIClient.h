@@ -37,6 +37,7 @@
 @interface GXGame (ArangoDB)
 
 + (void)getGame:(void (^)(GXGame* game))success failure:(void (^)(NSError* error))failure;
+- (void)readOpponents:(void (^)())success failure:(void (^)(NSError* error))failure;
 
 @end
 

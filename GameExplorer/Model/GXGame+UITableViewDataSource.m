@@ -28,10 +28,11 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"OpponentCell"];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"PlayerCell"];
 
-    GXPlayer* opponent = indexPath.row == 0 ? self.myself : self.opponents[indexPath.row - 1];
-    cell.textLabel.text = opponent.name;
+    GXPlayer* player = indexPath.row == 0 ? self.myself : self.opponents[indexPath.row - 1];
+    cell.textLabel.text = player.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%f, %f", player.latitude, player.longitude];
 
     return cell;
 }
