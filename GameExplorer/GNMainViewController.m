@@ -31,7 +31,7 @@
     __weak IBOutlet UIButton *_recordButton;
     __weak IBOutlet UITextField *_playerNameTextField;
     __weak IBOutlet UIButton *_joinButton;
-    __weak IBOutlet UITableView*    _opponentsTableView;
+    __weak IBOutlet UITableView*    _playersTableView;
 }
 
 @property (strong, nonatomic) AVAudioPlayer*        audioPlayer;
@@ -50,16 +50,20 @@
 #define DEBUGLog(format, ...) NSLog(format, ## __VA_ARGS__)
 #endif
 
-@implementation GNMainViewController
+@implementation GNMainViewController {
+    NSTimer*    _gameIterator;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    _gameIterator = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(gameIteratorTimer:) userInfo:nil repeats:YES];
+
     _joinButton.enabled = NO;
     _playerNameTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:kStandardUserDefaultsPlayerName];
 
-    _opponentsTableView.dataSource = _game;
+    _playersTableView.dataSource = _game;
 
     NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     _urlUserVoice = [NSURL fileURLWithPathComponents:@[documentsPath, @"uservoice.wav"]];
@@ -71,7 +75,7 @@
 
 
 - (void)viewDidUnload {
-    _opponentsTableView = nil;
+    _playersTableView = nil;
     _playerNameTextField = nil;
     _joinButton = nil;
     _recordButton = nil;
@@ -85,7 +89,7 @@
     GXPlayer* oponent = [[GXPlayer alloc] initWithPlayerId:@"__kat__"];
     oponent.name = @"Katrine";
     [_game addOpponent:oponent];
-    [_opponentsTableView reloadData];
+    [_playersTableView reloadData];
 }
 
 
@@ -136,6 +140,18 @@
     } else {
         [self performSegueWithIdentifier:@"showAlternate" sender:sender];
     }
+}
+
+
+#pragma mark - Private Methods
+
+- (void)gameIteratorTimer:(NSTimer*)timer {
+    [_game readOpponents:^{
+        _playersTableView.dataSource = _game;
+        [_playersTableView reloadData];
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
 }
 
 
@@ -421,10 +437,9 @@
             if (_game != nil) {
                 _joinButton.enabled = NO;
                 GXPlayer* player = [[GXPlayer alloc] initWithPlayerId:[self uniqueDeviceName]];
-                player.name = @"Martin";
-                [_game.myself joinGame:_game success:^(GXGame *game) {
+                player.name = _playerNameTextField.text;
+                [player joinGame:_game success:^(GXGame *game) {
                     [_game joinGameAsPlayer:player];
-                    [_opponentsTableView reloadData];
                 } failure:^(NSError *error) {
                     NSLog(@"%@", error);
                 }];

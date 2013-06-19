@@ -47,7 +47,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OpponentCell" textLabel="DRc-pG-bpo" style="IBUITableViewCellStyleDefault" id="ShK-M2-r76">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerCell" textLabel="DRc-pG-bpo" detailTextLabel="58v-Tt-fI7" style="IBUITableViewCellStyleValue1" id="ShK-M2-r76">
                                         <rect key="frame" x="0.0" y="46" width="320" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -55,10 +55,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DRc-pG-bpo">
-                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <rect key="frame" x="10" y="11" width="35" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="58v-Tt-fI7">
+                                                    <rect key="frame" x="246" y="11" width="44" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.2196078431372549" green="0.32941176470588235" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                             </subviews>
@@ -131,8 +138,8 @@
                     <navigationItem key="navigationItem" id="yQX-PE-J2P"/>
                     <connections>
                         <outlet property="_joinButton" destination="NCd-h6-SSk" id="51T-uT-VnD"/>
-                        <outlet property="_opponentsTableView" destination="8jI-Sf-omY" id="up0-iW-dkO"/>
                         <outlet property="_playerNameTextField" destination="VUg-FG-DF4" id="Si6-R8-OZW"/>
+                        <outlet property="_playersTableView" destination="8jI-Sf-omY" id="JMI-JL-Jkm"/>
                         <outlet property="_recordButton" destination="Rwy-V7-NxI" id="wNB-qm-Wfb"/>
                         <outlet property="statusLabel" destination="hAZ-Dp-tKT" id="ynd-uC-ecc"/>
                     </connections>
@@ -208,29 +215,6 @@
         <image name="RecordIcon.png" width="23" height="31"/>
         <image name="RecordingIcon.png" width="23" height="31"/>
     </resources>
-    <classes>
-        <class className="GNFlipsideViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GNFlipsideViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="outlet" name="tableview" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="GNMainViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GNMainViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addPlayerAction:"/>
-                <relationship kind="action" name="joinAction:"/>
-                <relationship kind="action" name="recordAction:"/>
-                <relationship kind="action" name="togglePopover:"/>
-                <relationship kind="outlet" name="_joinButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="_opponentsTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="_playerNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="_recordButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="statusLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

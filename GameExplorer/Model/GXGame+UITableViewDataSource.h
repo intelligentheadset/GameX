@@ -11,6 +11,5 @@
 
 @interface GXGame (UITableViewDataSource) <UITableViewDataSource>
 
-- (void)getGame:(void (^)(GXGame* game))successBlock failedBlock:(void (^)(NSError* error))failedBlock;
 
 @end
