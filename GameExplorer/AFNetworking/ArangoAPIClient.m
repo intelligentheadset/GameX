@@ -223,6 +223,22 @@ static NSString * const kAFAppDotNetAPIBaseURLString = @"http://81.169.185.26:90
 }
 
 
+- (void)updateFragCount:(void (^)())success failure:(void (^)(NSError* error))failure {
+    [[ArangoAPIClient sharedClient] patchPath:[self arangodbPath] parameters:@{@"fragCount": @(self.fragCount)} success:^(AFHTTPRequestOperation *operation, id JSON) {
+        //NSLog(@"Update Position Result: %@", JSON);
+        if (success != nil) {
+            success();
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure != nil) {
+            failure(error);
+        }
+    }];
+}
+
+
+#pragma mark - Private Methods
+
 - (NSString*)arangodbPath {
     return [NSString stringWithFormat:@"_api/document/GamePlayers/%@", self.pid];
 }

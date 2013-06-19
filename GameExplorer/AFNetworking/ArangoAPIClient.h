@@ -50,4 +50,6 @@
 - (void)updatePosition:(void (^)())success failure:(void (^)(NSError* error))failure;
 - (void)readPosition:(void (^)())success failure:(void (^)(NSError* error))failure;
 
+- (void)updateFragCount:(void (^)())success failure:(void (^)(NSError* error))failure;
+
 @end
