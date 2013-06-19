@@ -34,6 +34,12 @@
     cell.textLabel.text = player.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%f, %f", player.latitude, player.longitude];
 
+    UILabel* fragCount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 21)];
+    fragCount.text = @(player.fragCount).stringValue;
+    fragCount.backgroundColor = [UIColor clearColor];
+    fragCount.textAlignment = UITextAlignmentRight;
+    cell.accessoryView = fragCount;
+
     return cell;
 }
 

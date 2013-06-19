@@ -171,6 +171,11 @@
     GXPlayer* opponent = [_game shoot:APP_DELEGATE.ihsDevice.fusedHeading];
     if (opponent != nil) {
         _game.myself.fragCount++;
+        [_game.myself updateFragCount:^{
+
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
     }
 
     // Play a sound through the standard player to indicate that the IHS is connected
