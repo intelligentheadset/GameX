@@ -156,7 +156,16 @@ static NSString * const kAFAppDotNetAPIBaseURLString = @"http://81.169.185.26:90
         NSString* arangoError = error.userInfo[NSLocalizedRecoverySuggestionErrorKey];
         if ([arangoError rangeOfString:@"\"code\":409"].location != NSNotFound) {
             // The user already exists, update instead
-            [self updateNameAndVoice:success failure:failure];
+            [self updateNameAndVoice:^{
+                [self updatePosition:nil failure:nil];
+                if (success != nil) {
+                    success();
+                }
+            } failure:^(NSError *error) {
+                if (failure != nil) {
+                    failure(error);
+                }
+            }];
         }
         else {
             if (failure != nil) {
