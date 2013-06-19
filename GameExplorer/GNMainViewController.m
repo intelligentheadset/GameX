@@ -22,10 +22,11 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-@interface GNMainViewController () <UITextFieldDelegate, UITableViewDelegate, IHSDeviceDelegate, IHSSensorsDelegate, IHSButtonDelegate, IHS3DAudioDelegate, RecorderViewDelegate> {
+@interface GNMainViewController () <UITextFieldDelegate, UITableViewDelegate, IHSDeviceDelegate, IHSSensorsDelegate, IHSButtonDelegate, IHS3DAudioDelegate, RecorderViewDelegate, GXGameDelegate> {
     GXGame*                         _game;
     NSURL*                          _urlUserVoice;
     AVAudioPlayer*                  _shootAudioPlayer;
+    NSMutableDictionary*            _opponentUserVoices;
 
     __weak IBOutlet UILabel*        statusLabel;
 
@@ -62,6 +63,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    _opponentUserVoices = [[NSMutableDictionary alloc] init];
 
     _gameIterator = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(gameIteratorTimer:) userInfo:nil repeats:YES];
 
@@ -194,6 +197,7 @@
     APP_DELEGATE.ihsDevice.sensorsDelegate = self;  // ... receive data from the IHS sensors
     APP_DELEGATE.ihsDevice.buttonDelegate = self;   // ... receive button presses
     APP_DELEGATE.ihsDevice.audioDelegate = self;    // ... receive 3daudio notifications.
+    APP_DELEGATE.ihsDevice.sequentialSounds = NO;
 
     // Establish connection to the physical IHS
     if (APP_DELEGATE.ihsDevice.connectionState != IHSDeviceConnectionStateConnected) {
@@ -276,7 +280,7 @@
     {
         case IHSDeviceConnectionStateConnected: {
             // Save the name of the connected IHS device to automatically connect to it next time the app starts
-            APP_DELEGATE.preferredDevice = ihsDevice.name;
+            APP_DELEGATE.preferredDevice = ihsDevice.name;            
 
             // Play a sound through the standard player to indicate that the IHS is connected
             [self playSystemSoundWithName:@"TestConnectSound"];
@@ -487,6 +491,7 @@
         [_networkActivityIndicator startAnimating];
         [GXGame getGame:^(GXGame *game) {
             _game = game;
+            _game.delegate = self;
             if (_game != nil) {
                 GXPlayer* player = [[GXPlayer alloc] initWithPlayerId:[self uniqueDeviceName]];
                 player.name = _playerNameTextField.text;
@@ -565,6 +570,56 @@
         result = [result stringByAppendingString:uuid.UUIDString];
     }
     return result;
+}
+
+
+#pragma mark - GXGameDelegate
+
+- (void)game:(GXGame *)game playerInRange:(GXPlayer *)player {
+    IHSDevice* ihsDevice = APP_DELEGATE.ihsDevice;
+
+    /*
+    // first some cleanup - remove playerd sounds
+    NSMutableArray* finishedSounds = [NSMutableArray new];
+    for (GNAudio3DSound* sound in ihsDevice.sounds) {
+        if (sound.currentTime >= sound.duration) {
+            [finishedSounds addObject:sound];
+        }
+    }
+
+    for (GNAudio3DSound* sound in finishedSounds) {
+        [ihsDevice removeSound:sound];
+    }
+
+    finishedSounds = nil;
+     */
+    GNAudio3DSound* sound = _opponentUserVoices[player.pid];
+    if (sound == nil) {
+        // Create north and south GNAudio3DSound objects from embedded sound resources:
+        NSURL* playerUrl = [[NSBundle mainBundle] URLForResource:@"player" withExtension:@"wav"];
+        sound = [[GNAudio3DSound alloc] initWithURL:playerUrl];
+        sound.volume = 1.0;
+        _opponentUserVoices[player.pid] = sound;
+    }
+
+    if (![ihsDevice.sounds containsObject:sound]) {
+        [ihsDevice addSound:sound];
+    }
+
+    sound.heading = player.direction;
+    sound.distance = player.distance / 1000;
+
+    if (!ihsDevice.isPlaying) {
+        [ihsDevice play];
+    }
+}
+
+
+- (void)game:(GXGame*)game playerOutOfRange:(GXPlayer*)player {
+    GNAudio3DSound* sound = _opponentUserVoices[player.pid];
+    if (sound != nil) {
+        sound.repeats = NO;
+    }
 }
 
 

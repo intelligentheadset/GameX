@@ -33,12 +33,17 @@
     GXPlayer* player = indexPath.row == 0 ? self.myself : self.opponents[indexPath.row - 1];
     cell.textLabel.text = player.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%f, %f", player.latitude, player.longitude];
+    cell.backgroundColor = [UIColor whiteColor];
 
     UILabel* fragCount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 21)];
     fragCount.text = @(player.fragCount).stringValue;
     fragCount.backgroundColor = [UIColor clearColor];
     fragCount.textAlignment = UITextAlignmentRight;
     cell.accessoryView = fragCount;
+
+    if ([self.lastShot.pid isEqualToString:player.pid]) {
+        cell.backgroundColor = [UIColor redColor];
+    }
 
     return cell;
 }
