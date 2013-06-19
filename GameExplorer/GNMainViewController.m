@@ -100,6 +100,10 @@
     [_playersTableView reloadData];
 }
 
+- (IBAction)shootAction:(id)sender {
+    [self shoot];
+}
+
 
 #pragma mark - Flipside View Controller
 
@@ -160,6 +164,17 @@
     } failure:^(NSError *error) {
         NSLog(@"%@", error);
     }];
+}
+
+
+- (void)shoot {
+    GXPlayer* opponent = [_game shoot:APP_DELEGATE.ihsDevice.fusedHeading];
+    if (opponent != nil) {
+        _game.myself.fragCount++;
+    }
+
+    // Play a sound through the standard player to indicate that the IHS is connected
+    [self playShootSound];
 }
 
 
@@ -286,6 +301,7 @@
 
     // Use the fused heading as reference for the 3D audio player in the IHS
     ihs.playerHeading = heading;
+    _game.myself.heading = heading;
 }
 
 
@@ -383,14 +399,7 @@
             // Clear the list of sounds
             [ihsDevice clearSounds];
              */
-            GXPlayer* opponent = [_game shoot:APP_DELEGATE.ihsDevice.fusedHeading];
-            if (opponent != nil) {
-                _game.myself.fragCount++;
-            }
-
-            // Play a sound through the standard player to indicate that the IHS is connected
-            [self playShootSound];
-
+            [self shoot];
             break;
         }
             
