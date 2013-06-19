@@ -283,6 +283,11 @@
     DEBUGLog(@"   %@", APP_DELEGATE.ihsDevice.location );
 
     [_game.myself setLatitude:latitude andLongitude:longitude];
+    [_game.myself updatePosition:^{
+
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
 }
 
 
@@ -417,10 +422,9 @@
                 _joinButton.enabled = NO;
                 GXPlayer* player = [[GXPlayer alloc] initWithPlayerId:[self uniqueDeviceName]];
                 player.name = @"Martin";
-                [_game joinGameAsPlayer:player];
-                [_opponentsTableView reloadData];
                 [_game.myself joinGame:_game success:^(GXGame *game) {
-
+                    [_game joinGameAsPlayer:player];
+                    [_opponentsTableView reloadData];
                 } failure:^(NSError *error) {
                     NSLog(@"%@", error);
                 }];

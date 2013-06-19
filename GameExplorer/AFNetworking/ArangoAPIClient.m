@@ -89,6 +89,9 @@ static NSString * const kAFAppDotNetAPIBaseURLString = @"http://localhost:8529/"
 - (void)joinGame:(GXGame*)game success:(void (^)(GXGame* game))success failure:(void (^)(NSError* error))failure {
     [[ArangoAPIClient sharedClient] postPath:@"_api/document?collection=GamePlayers" parameters:@{@"game": game.gid, @"_key": self.pid, @"name": self.name} success:^(AFHTTPRequestOperation *operation, id JSON) {
         NSLog(@"Join Game Result: %@", JSON);
+        if (success != nil) {
+            success(game);
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSString* arangoError = error.userInfo[NSLocalizedRecoverySuggestionErrorKey];
         if ([arangoError rangeOfString:@"\"code\":409"].location != NSNotFound) {
@@ -96,13 +99,59 @@ static NSString * const kAFAppDotNetAPIBaseURLString = @"http://localhost:8529/"
             [self updateNameAndVoice:success failure:failure];
         }
         else {
+            if (failure != nil) {
+                failure(error);
+            }
+        }
+    }];
+}
+
+
+- (void)updateNameAndVoice:(void (^)())success failure:(void (^)(NSError* error))failure {
+    //[[ArangoAPIClient sharedClient] putPath:[self arangodbPath] parameters:@{@"name": self.name, @"uservoice": [NSData dataWithContentsOfURL:self.userVoice]} success:^(AFHTTPRequestOperation *operation, id JSON) {
+    [[ArangoAPIClient sharedClient] putPath:[self arangodbPath] parameters:@{@"name": self.name} success:^(AFHTTPRequestOperation *operation, id JSON) {
+        NSLog(@"Update Position Result: %@", JSON);
+        if (success != nil) {
+            success();
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure != nil) {
             failure(error);
         }
     }];
 }
 
 
-- (void)updateNameAndVoice:(void (^)(GXGame* game))success failure:(void (^)(NSError* error))failure {
+- (void)updatePosition:(void (^)())success failure:(void (^)(NSError* error))failure {
+    [[ArangoAPIClient sharedClient] putPath:[self arangodbPath] parameters:@{@"latitude": @(self.latitude), @"longitude": @(self.longitude)} success:^(AFHTTPRequestOperation *operation, id JSON) {
+        NSLog(@"Update Position Result: %@", JSON);
+        if (success != nil) {
+            success();
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure != nil) {
+            failure(error);
+        }
+    }];
+}
+
+
+- (void)readPosition:(void (^)())success failure:(void (^)(NSError* error))failure {
+    [[ArangoAPIClient sharedClient] putPath:[self arangodbPath] parameters:@{@"latitude": @(self.latitude), @"longitude": @(self.longitude)} success:^(AFHTTPRequestOperation *operation, id JSON) {
+        NSLog(@"Update Position Result: %@", JSON);
+        if (success != nil) {
+            success();
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure != nil) {
+            failure(error);
+        }
+    }];
+}
+
+
+- (NSString*)arangodbPath {
+    return [NSString stringWithFormat:@"_api/document/GamePlayers/%@", self.pid];
 }
 
 @end

@@ -13,6 +13,7 @@
 @property (nonatomic, readonly) NSString* pid;
 
 @property (nonatomic, copy) NSString* name;
+@property (nonatomic, copy) NSURL* userVoice;
 
 @property (nonatomic, readonly) double latitude;
 @property (nonatomic, readonly) double longitude;
