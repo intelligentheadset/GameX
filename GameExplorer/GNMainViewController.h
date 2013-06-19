@@ -13,5 +13,6 @@
 @property (strong, nonatomic) UIPopoverController *flipsidePopoverController;
 
 - (IBAction)addPlayerAction:(id)sender;
+- (IBAction)shootAction:(id)sender;
 
 @end

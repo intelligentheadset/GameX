@@ -17,6 +17,7 @@
 
 @property (nonatomic, readonly) double latitude;
 @property (nonatomic, readonly) double longitude;
+@property (nonatomic, assign) float heading;
 
 @property (nonatomic, readonly) double distance;
 @property (nonatomic, readonly) double direction;
