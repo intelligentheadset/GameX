@@ -24,17 +24,11 @@ static NSString* const kStandardUserDefaultsLastConnectedDevice = @"kStandardUse
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    [[NSUserDefaults standardUserDefaults] setValue:self.preferredDevice forKey:kStandardUserDefaultsLastConnectedDevice];
 }
 
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    if ( _ihsDevice ) {
-        // Remove these lines if you want the connection to the IHS device to stay open while the app is in the background
-        [self.ihsDevice disconnect];
-        _ihsDevice = nil;
-    }
 }
 
 

@@ -33,6 +33,8 @@
 		5B3579C31770C2FA00A00526 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3579BA1770C2FA00A00526 /* UIImageView+AFNetworking.m */; };
 		5B3579C71770C37F00A00526 /* ArangoAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3579C61770C37F00A00526 /* ArangoAPIClient.m */; };
 		5BACD15F1771C7270047E71D /* libIHS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BE3CF4B1770499600EB542A /* libIHS.a */; };
+		5BACD1621771D1760047E71D /* player.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5BACD1601771D1760047E71D /* player.wav */; };
+		5BACD1631771D1760047E71D /* shoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5BACD1611771D1760047E71D /* shoot.wav */; };
 		5BE3CF4C1770499600EB542A /* IHS.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF461770499600EB542A /* IHS.xcconfig */; };
 		5BE3CF60177049C400EB542A /* TestConnectSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF4F177049C400EB542A /* TestConnectSound.wav */; };
 		5BE3CF61177049C400EB542A /* ThisIsNorth.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3CF50177049C400EB542A /* ThisIsNorth.wav */; };
@@ -112,6 +114,8 @@
 		5B3579BA1770C2FA00A00526 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		5B3579C51770C37F00A00526 /* ArangoAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArangoAPIClient.h; sourceTree = "<group>"; };
 		5B3579C61770C37F00A00526 /* ArangoAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArangoAPIClient.m; sourceTree = "<group>"; };
+		5BACD1601771D1760047E71D /* player.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = player.wav; sourceTree = "<group>"; };
+		5BACD1611771D1760047E71D /* shoot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shoot.wav; sourceTree = "<group>"; };
 		5BE3CF461770499600EB542A /* IHS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = IHS.xcconfig; sourceTree = "<group>"; };
 		5BE3CF481770499600EB542A /* GNAudio3DSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAudio3DSound.h; sourceTree = "<group>"; };
 		5BE3CF491770499600EB542A /* IHSDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IHSDevice.h; sourceTree = "<group>"; };
@@ -313,6 +317,8 @@
 		5BE3CF4E177049C400EB542A /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				5BACD1601771D1760047E71D /* player.wav */,
+				5BACD1611771D1760047E71D /* shoot.wav */,
 				5BE3CF4F177049C400EB542A /* TestConnectSound.wav */,
 				5BE3CF50177049C400EB542A /* ThisIsNorth.wav */,
 				5BE3CF51177049C400EB542A /* ThisIsSouth.wav */,
@@ -514,6 +520,8 @@
 				5B3578FD1770A0D000A00526 /* RecordingIcon@2x.png in Resources */,
 				5B3578FE1770A0D000A00526 /* StopButton.png in Resources */,
 				5B3578FF1770A0D000A00526 /* StopButton@2x.png in Resources */,
+				5BACD1621771D1760047E71D /* player.wav in Resources */,
+				5BACD1631771D1760047E71D /* shoot.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,6 +25,7 @@
 @interface GNMainViewController () <UITextFieldDelegate, UITableViewDelegate, IHSDeviceDelegate, IHSSensorsDelegate, IHSButtonDelegate, IHS3DAudioDelegate, RecorderViewDelegate> {
     GXGame*                         _game;
     NSURL*                          _urlUserVoice;
+    AVAudioPlayer*                  _shootAudioPlayer;
 
     __weak IBOutlet UILabel*        statusLabel;
 
@@ -34,6 +35,8 @@
     __weak IBOutlet UITableView*    _playersTableView;
     
     __weak IBOutlet UIActivityIndicatorView *_networkActivityIndicator;
+
+    
 }
 
 @property (strong, nonatomic) AVAudioPlayer*        audioPlayer;
@@ -73,6 +76,8 @@
 
     // Register to get notified via 'appDidBecomeActive' when the app becomes active
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+
+    [self prepareShootSound];
 }
 
 
@@ -169,7 +174,9 @@
     APP_DELEGATE.ihsDevice.audioDelegate = self;    // ... receive 3daudio notifications.
 
     // Establish connection to the physical IHS
-    [APP_DELEGATE.ihsDevice connect];
+    if (APP_DELEGATE.ihsDevice.connectionState != IHSDeviceConnectionStateConnected) {
+        [APP_DELEGATE.ihsDevice connect];
+    }
 }
 
 
@@ -192,6 +199,28 @@
         [self.audioPlayer prepareToPlay];
         [self.audioPlayer play];
     }
+}
+
+
+- (void)prepareShootSound {
+    if (_shootAudioPlayer == nil) {
+        NSError *error = nil;
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"shoot" withExtension:@"wav"];
+
+        _shootAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+        if (error != nil) {
+            NSLog(@"Error playing sound '%@': %@", @"shoot.wav", error);
+            _shootAudioPlayer = nil;
+        }
+        _shootAudioPlayer.volume = 1.0;
+        [_shootAudioPlayer prepareToPlay];
+    }
+}
+
+
+- (void)playShootSound {
+    [_shootAudioPlayer stop];
+    [_shootAudioPlayer play];
 }
 
 
@@ -358,7 +387,10 @@
             if (opponent != nil) {
                 _game.myself.fragCount++;
             }
-            
+
+            // Play a sound through the standard player to indicate that the IHS is connected
+            [self playShootSound];
+
             break;
         }
             
