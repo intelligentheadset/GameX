@@ -22,9 +22,28 @@
 
 #import <Foundation/Foundation.h>
 #import "AFHTTPClient.h"
+#import "GXGame.h"
+#import "GXPlayer.h"
 
 @interface ArangoAPIClient : AFHTTPClient
 
 + (ArangoAPIClient *)sharedClient;
+
+//- (void)player:(GXPlayer*)player success:(void (^)(GXGame* game))success failure:(void (^)(NSError* error))failure;
+
+@end
+
+
+@interface GXGame (ArangoDB)
+
++ (void)getGame:(void (^)(GXGame* game))success failure:(void (^)(NSError* error))failure;
+
+@end
+
+
+@interface GXPlayer (ArangoDB)
+
+- (void)joinGame:(GXGame*)game success:(void (^)(GXGame* game))success failure:(void (^)(NSError* error))failure;
+- (void)updateNameAndVoice:(void (^)(GXGame* game))success failure:(void (^)(NSError* error))failure;
 
 @end

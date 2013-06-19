@@ -206,7 +206,7 @@
     {
         case IHSDeviceConnectionStateConnected: {
             // Save the name of the connected IHS device to automatically connect to it next time the app starts
-            APP_DELEGATE.preferredDevice = ihsDevice.preferredDevice;
+            APP_DELEGATE.preferredDevice = ihsDevice.name;
 
             // Play a sound through the standard player to indicate that the IHS is connected
             [self playSystemSoundWithName:@"TestConnectSound"];
@@ -411,24 +411,23 @@
     }
     else {
         // First fetch game (one hardcoded game)
-        [[ArangoAPIClient sharedClient] postPath:@"_api/cursor" parameters:@{@"query": @"for game in Games return game"} success:^(AFHTTPRequestOperation *operation, id JSON) {
-            NSLog(@"Games Result: %@", JSON);
-            NSArray* games = JSON[@"result"];
-            NSDictionary* currentGame = [games lastObject];
-            _game = [[GXGame alloc] initWithGameId:currentGame[@"_key"]];
-            _game.name = currentGame[@"name"];
-
+        [GXGame getGame:^(GXGame *game) {
+            _game = game;
             if (_game != nil) {
                 _joinButton.enabled = NO;
-                GXPlayer* player = [[GXPlayer alloc] initWithPlayerId:APP_DELEGATE.ihsDevice.preferredDevice];
+                GXPlayer* player = [[GXPlayer alloc] initWithPlayerId:[self uniqueDeviceName]];
                 player.name = @"Martin";
                 [_game joinGameAsPlayer:player];
                 [_opponentsTableView reloadData];
+                [_game.myself joinGame:_game success:^(GXGame *game) {
+
+                } failure:^(NSError *error) {
+                    NSLog(@"%@", error);
+                }];
             }
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^(NSError *error) {
             NSLog(@"%@", error);
         }];
-
     }
     /*
     [[ArangoAPIClient sharedClient] postPath:@"_api/cursor" parameters:@{@"query": @"for player in GamePlayers filter player.game==\"1\" return player"} success:^(AFHTTPRequestOperation *operation, id JSON) {
@@ -473,6 +472,22 @@
                                        cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Generic dismiss title")
                                        otherButtonTitles:nil];
     [av show];
+}
+
+
+- (NSString*)uniqueDeviceName {
+    NSString* result = APP_DELEGATE.ihsDevice.name;
+    if ([result isEqualToString:@"Simulated"]) {
+        NSString* uuidString = [[NSUserDefaults standardUserDefaults] objectForKey:@"UUID"];
+        if (uuidString == nil) {
+            uuidString = [[NSUUID UUID] UUIDString];
+            [[NSUserDefaults standardUserDefaults] setObject:uuidString forKey:@"UUID"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        NSUUID* uuid = [[NSUUID alloc] initWithUUIDString:uuidString];
+        result = [result stringByAppendingString:uuid.UUIDString];
+    }
+    return result;
 }
 
 
