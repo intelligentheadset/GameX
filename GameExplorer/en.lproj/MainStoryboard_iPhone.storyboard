@@ -74,7 +74,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dw1-7Q-cTb">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dw1-7Q-cTb">
                                 <rect key="frame" x="20" y="407" width="73" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -249,7 +249,7 @@
                 <relationship kind="action" name="addPlayerAction:"/>
                 <relationship kind="action" name="joinAction:"/>
                 <relationship kind="action" name="recordAction:"/>
-                <relationship kind="action" name="togglePopover:"/>
+                <relationship kind="action" name="shootAction:"/>
                 <relationship kind="outlet" name="_joinButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="_networkActivityIndicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="_playerNameTextField" candidateClass="UITextField"/>
