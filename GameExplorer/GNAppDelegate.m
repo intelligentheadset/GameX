@@ -71,7 +71,7 @@ static NSString* const kStandardUserDefaultsLastConnectedDevice = @"kStandardUse
 {
     if ( _ihsDevice == nil ) {
         // Initialize with the name of the IHS device the app was most recently connected to
-        _ihsDevice = [[IHSDevice alloc] initWithPreferredDevice:self.preferredDevice];
+        _ihsDevice = [[IHSDevice alloc] initWithPreferredDevice:self.preferredDevice ?: @""];
     }
     return _ihsDevice;
 }
