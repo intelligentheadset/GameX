@@ -94,10 +94,12 @@
 #pragma mark - Interface Builder Actions
 
 - (IBAction)addPlayerAction:(id)sender {
+    /*
     GXPlayer* oponent = [[GXPlayer alloc] initWithPlayerId:@"__kat__"];
     oponent.name = @"Katrine";
     [_game addOpponent:oponent];
     [_playersTableView reloadData];
+    */
 }
 
 - (IBAction)shootAction:(id)sender {
