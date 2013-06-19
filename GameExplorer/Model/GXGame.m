@@ -49,6 +49,13 @@
 
 - (void)addOpponent:(GXPlayer*)opponent {
     _opponents[opponent.pid] = opponent;
+
+    if ((_myself.latitude != 0) && (_myself.longitude!= 0)) {
+        if ((opponent.latitude != 0) && (opponent.longitude != 0)) {
+            GNDistanceAndDirection* dad = GreatCircleDist(_myself.latitude, _myself.longitude, opponent.latitude, opponent.longitude);
+            [opponent setDistance:dad.distance andDirection:dad.direction];
+        }
+    }
 }
 
 
@@ -62,12 +69,12 @@
     if ((_myself.latitude != 0) && (_myself.longitude!= 0)) {
         for (GXPlayer* opponent in _opponents.allValues) {
             if ((opponent.latitude != 0) && (opponent.longitude != 0)) {
-                GNDistanceAndDirection* dad = GreatCircleDist(_myself.latitude, _myself.longitude, opponent.latitude, opponent.longitude);
-                if (dad.distance < 30.0) {
-                    NSLog(@"Distance: %f, Direction %f", dad.distance, dad.direction);
-                    float deltaDirection = fabs(direction - dad.direction);
+                if ((opponent.distance >= 20.0) && (opponent.distance <= 40.0)) {
+                    NSLog(@"Distance: %f, Direction %f", opponent.distance, opponent.direction);
+                    float deltaDirection = fabs(direction - opponent
+                                                .direction);
                     NSLog(@"Delta Direction %f", deltaDirection);
-                    if (deltaDirection < 10.0) {
+                    if (deltaDirection < 30.0) {
                         result = opponent;
                         break;
                     }

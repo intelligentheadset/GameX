@@ -24,9 +24,6 @@
 - (void)joinGameAsPlayer:(GXPlayer*)player;
 - (void)leave;
 
-- (void)addOpponent:(GXPlayer*)opponent;
-- (void)removeOpponent:(GXPlayer*)opponent;
-
 - (GXPlayer*)shoot:(double)direction;
 
 @end
