@@ -67,11 +67,13 @@
 
 
 - (void)pingPlayer:(GXPlayer*)player {
-    if ((player.distance >= 0.0) && (player.distance < 100.0)) {
-        [_delegate game:self playerInRange:player];
-    }
-    else {
-        [_delegate game:self playerOutOfRange:player];
+    if ((_myself.latitude != 0) && (_myself.longitude != 0)) {
+        if ((player.distance > 0.0) && (player.distance <= 100.0)) {
+            [_delegate game:self playerInRange:player];
+        }
+        else {
+            [_delegate game:self playerOutOfRange:player];
+        }
     }
 }
 
