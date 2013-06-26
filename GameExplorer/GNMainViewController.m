@@ -280,7 +280,7 @@
     {
         case IHSDeviceConnectionStateConnected: {
             // Save the name of the connected IHS device to automatically connect to it next time the app starts
-            APP_DELEGATE.preferredDevice = ihsDevice.name;            
+            APP_DELEGATE.preferredDevice = ihsDevice.preferredDevice;
 
             // Play a sound through the standard player to indicate that the IHS is connected
             [self playSystemSoundWithName:@"TestConnectSound"];
