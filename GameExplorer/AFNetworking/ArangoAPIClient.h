@@ -45,6 +45,7 @@
 @interface GXPlayer (ArangoDB)
 
 - (void)joinGame:(GXGame*)game success:(void (^)())success failure:(void (^)(NSError* error))failure;
+- (void)leaveGame:(GXGame*)game success:(void (^)())success failure:(void (^)(NSError* error))failure;
 - (void)updateNameAndVoice:(void (^)())success failure:(void (^)(NSError* error))failure;
 
 - (void)updatePosition:(void (^)())success failure:(void (^)(NSError* error))failure;

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B26C63A177B0B3C00244423 /* MainBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B26C638177B0B3C00244423 /* MainBackground.png */; };
+		5B26C63B177B0B3C00244423 /* MainBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B26C639177B0B3C00244423 /* MainBackground@2x.png */; };
 		5B3578DC1770703300A00526 /* GXGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3578DB1770703300A00526 /* GXGame.m */; };
 		5B3578DF1770708C00A00526 /* GXPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3578DE1770708C00A00526 /* GXPlayer.m */; };
 		5B3578E21770795A00A00526 /* GXGame+UITableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3578E11770795A00A00526 /* GXGame+UITableViewDataSource.m */; };
@@ -72,6 +74,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B26C638177B0B3C00244423 /* MainBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MainBackground.png; sourceTree = "<group>"; };
+		5B26C639177B0B3C00244423 /* MainBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MainBackground@2x.png"; sourceTree = "<group>"; };
 		5B3578DA1770703300A00526 /* GXGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GXGame.h; sourceTree = "<group>"; };
 		5B3578DB1770703300A00526 /* GXGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GXGame.m; sourceTree = "<group>"; };
 		5B3578DD1770708C00A00526 /* GXPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GXPlayer.h; sourceTree = "<group>"; };
@@ -331,6 +335,8 @@
 			children = (
 				5BE3CF53177049C400EB542A /* Icon */,
 				5BE3CF58177049C400EB542A /* Splash */,
+				5B26C638177B0B3C00244423 /* MainBackground.png */,
+				5B26C639177B0B3C00244423 /* MainBackground@2x.png */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
@@ -522,6 +528,8 @@
 				5B3578FF1770A0D000A00526 /* StopButton@2x.png in Resources */,
 				5BACD1621771D1760047E71D /* player.wav in Resources */,
 				5BACD1631771D1760047E71D /* shoot.wav in Resources */,
+				5B26C63A177B0B3C00244423 /* MainBackground.png in Resources */,
+				5B26C63B177B0B3C00244423 /* MainBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

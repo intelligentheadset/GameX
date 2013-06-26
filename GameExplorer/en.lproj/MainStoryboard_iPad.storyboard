@@ -44,7 +44,7 @@
                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="statusLabel" destination="6PN-f7-xpd" id="I4m-V5-X2w"/>
+                        <outlet property="_statusLabel" destination="6PN-f7-xpd" id="eSa-H2-EX8"/>
                         <segue destination="5" kind="popover" identifier="showAlternate" popoverAnchorBarButtonItem="15" id="22">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>

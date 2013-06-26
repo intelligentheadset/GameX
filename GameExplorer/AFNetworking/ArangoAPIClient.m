@@ -24,8 +24,9 @@
 
 #import "AFJSONRequestOperation.h"
 
+static NSString * const kAFAppDotNetAPIBaseURLString = @"http://192.168.2.1:8529/";
 //static NSString * const kAFAppDotNetAPIBaseURLString = @"http://localhost:8529/";
-static NSString * const kAFAppDotNetAPIBaseURLString = @"http://81.169.185.26:9000/";
+//static NSString * const kAFAppDotNetAPIBaseURLString = @"http://81.169.185.26:9000/";
 
 
 
@@ -179,6 +180,20 @@ static NSString * const kAFAppDotNetAPIBaseURLString = @"http://81.169.185.26:90
             if (failure != nil) {
                 failure(error);
             }
+        }
+    }];
+}
+
+
+- (void)leaveGame:(GXGame*)game success:(void (^)())success failure:(void (^)(NSError* error))failure {
+    [[ArangoAPIClient sharedClient] deletePath:[self arangodbPath] parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON) {
+        //NSLog(@"Update Name And Voice Result: %@", JSON);
+        if (success != nil) {
+            success();
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure != nil) {
+            failure(error);
         }
     }];
 }

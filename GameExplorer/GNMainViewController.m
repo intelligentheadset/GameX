@@ -28,11 +28,13 @@
     AVAudioPlayer*                  _shootAudioPlayer;
     NSMutableDictionary*            _opponentUserVoices;
 
-    __weak IBOutlet UILabel*        statusLabel;
+    __weak IBOutlet UIView*         _statusView;
+    __weak IBOutlet UILabel*        _statusLabel;
 
-    __weak IBOutlet UIButton *_recordButton;
-    __weak IBOutlet UITextField *_playerNameTextField;
-    __weak IBOutlet UIButton *_joinButton;
+    __weak IBOutlet UIView*         _joinGameView;
+    __weak IBOutlet UIButton*       _recordButton;
+    __weak IBOutlet UITextField*    _playerNameTextField;
+    __weak IBOutlet UIButton*       _joinButton;
     __weak IBOutlet UITableView*    _playersTableView;
     
     __weak IBOutlet UIActivityIndicatorView *_networkActivityIndicator;
@@ -90,6 +92,8 @@
     _joinButton = nil;
     _recordButton = nil;
     _networkActivityIndicator = nil;
+    _joinGameView = nil;
+    _statusView = nil;
     [super viewDidUnload];
 }
 
@@ -162,6 +166,21 @@
 
 #pragma mark - Private Methods
 
+- (void)setJoinGameShowing:(BOOL)showing animated:(BOOL)animated {
+    [UIView animateWithDuration:(animated ? .33 : .00) animations:^{
+        _joinButton.hidden = NO;
+        _joinButton.enabled = APP_DELEGATE.ihsDevice.connectionState == IHSDeviceConnectionStateConnected;
+        [_networkActivityIndicator stopAnimating];
+        if (showing) {
+            _joinGameView.frame = CGRectMake(0, CGRectGetMaxY(_statusView.frame), CGRectGetWidth(_joinGameView.frame), CGRectGetHeight(_joinGameView.frame));
+        }
+        else {
+            _joinGameView.frame = CGRectMake(0, -CGRectGetHeight(_joinGameView.frame), CGRectGetWidth(_joinGameView.frame), CGRectGetHeight(_joinGameView.frame));
+        }
+    }];
+}
+
+
 - (void)gameIteratorTimer:(NSTimer*)timer {
     [_game readOpponents:^{
         _playersTableView.dataSource = _game;
@@ -171,6 +190,52 @@
     }];
 }
 
+
+- (void)setGame:(GXGame*)game {
+    if (game != _game) {
+        _game = game;
+        _game .delegate = self;
+        _playersTableView.dataSource = _game;
+        [UIView animateWithDuration:0.33 animations:^{
+            _playersTableView.alpha = _game != nil ? 1.0 : 0.0;
+        }];
+    }
+}
+
+
+- (void)joinGameWithName:(NSString*)name andVoice:(NSURL*)urlVoice {
+    // First fetch game (one hardcoded game)
+    _joinButton.hidden = YES;
+    [_networkActivityIndicator startAnimating];
+    [GXGame getGame:^(GXGame *game) {
+        [self setGame:game];
+        if (_game != nil) {
+            GXPlayer* player = [[GXPlayer alloc] initWithPlayerId:[self uniqueDeviceName]];
+            player.name = name;
+            [player joinGame:_game success:^() {
+                [_game joinGameAsPlayer:player];
+                [self setJoinGameShowing:NO animated:YES];
+            } failure:^(NSError *error) {
+                NSLog(@"%@", error);
+                [self setJoinGameShowing:YES animated:YES];
+            }];
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+        [self setJoinGameShowing:NO animated:YES];
+    }];
+}
+
+
+- (void)leaveGame {
+    [_game.myself leaveGame:_game success:^{
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+    [_game leave];
+    [self setGame:nil];
+    [self setJoinGameShowing:YES animated:YES];
+}
 
 - (void)shoot {
     GXPlayer* opponent = [_game shoot:APP_DELEGATE.ihsDevice.fusedHeading];
@@ -274,9 +339,9 @@
     NSString* deviceName = APP_DELEGATE.ihsDevice.name ?: @"Game X";
     NSString* statusText = [NSString stringWithFormat:@"%@ (%@)", deviceName, connectionString ];
     
-    statusLabel.text = statusText;
+    _statusLabel.text = statusText;
     
-    switch ( connectionState )
+    switch (connectionState)
     {
         case IHSDeviceConnectionStateConnected: {
             // Save the name of the connected IHS device to automatically connect to it next time the app starts
@@ -289,7 +354,6 @@
         }
 
         case IHSDeviceConnectionStateDisconnected: {
-            [_game leave];
             break;
         }
 
@@ -300,6 +364,12 @@
         case IHSDeviceConnectionStateConnecting:
         case IHSDeviceConnectionStateConnectionFailed:
             break;
+    }
+
+    if (connectionState == IHSDeviceConnectionStateConnected) {
+    }
+    else {
+        [self leaveGame];
     }
 }
 
@@ -486,46 +556,8 @@
         [av show];
     }
     else {
-        // First fetch game (one hardcoded game)
-        _joinButton.hidden = YES;
-        [_networkActivityIndicator startAnimating];
-        [GXGame getGame:^(GXGame *game) {
-            _game = game;
-            _game.delegate = self;
-            if (_game != nil) {
-                GXPlayer* player = [[GXPlayer alloc] initWithPlayerId:[self uniqueDeviceName]];
-                player.name = _playerNameTextField.text;
-                [player joinGame:_game success:^() {
-                    [_game joinGameAsPlayer:player];
-                    _joinButton.hidden = NO;
-                    [_networkActivityIndicator stopAnimating];
-                } failure:^(NSError *error) {
-                    NSLog(@"%@", error);
-                    _joinButton.hidden = NO;
-                    [_networkActivityIndicator stopAnimating];
-                }];
-            }
-        } failure:^(NSError *error) {
-            NSLog(@"%@", error);
-            _joinButton.hidden = NO;
-            [_networkActivityIndicator stopAnimating];
-        }];
+        [self joinGameWithName:_playerNameTextField.text andVoice:nil];
     }
-    /*
-    [[ArangoAPIClient sharedClient] postPath:@"_api/cursor" parameters:@{@"query": @"for player in GamePlayers filter player.game==\"1\" return player"} success:^(AFHTTPRequestOperation *operation, id JSON) {
-        NSLog(@"App.net Global Stream: %@", JSON);
-        NSDictionary* players = JSON[@"result"];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
-    }];
-*/
-
-
-/*
-    GXPlayer* player = [[GXPlayer alloc] initWithPlayerId:APP_DELEGATE.ihsDevice.preferredDevice];
-    player.name = @"Martin";
-    [_game joinGameAsPlayer:player];
-*/
 }
 
 
